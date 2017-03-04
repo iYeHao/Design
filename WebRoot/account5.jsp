@@ -186,6 +186,7 @@ ul.nav a { zoom: 1; }  /* 缩放属性将为 IE 提供其需要的 hasLayout 触
  
                 <fieldset style="width:80%; float:left;">
                   <c:forEach  var="f" items="${flist}">
+                  
                 	<p><h4>字段名：<c:out value="${f.fname}"></c:out></h4> 
                     <p><h4>字段内容：<c:out value="${f.ftext}"></c:out></h4> 
                     </c:forEach>

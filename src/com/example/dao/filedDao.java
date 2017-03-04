@@ -96,5 +96,43 @@ public class filedDao extends baseDao{
 		f.setFtext(ftext);
 		return f;
 	}
+	public String findAuthor(int userid) throws SQLException{
+		String author=null;
+		String sql="select * from users where userid=?";
+		this.ConnetOrcl();
+		java.sql.PreparedStatement ps =this.conn.prepareStatement(sql);
+		ps.setInt(1, userid);
+		java.sql.ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			author=rs.getString(3);
+		}
+		return author;
+	}
+	ArrayList<Field> flist = new ArrayList<Field>();
+	public ArrayList<Field> trackback(int fid) throws SQLException {
+		// TODO Auto-generated method stub
+
+		if(fid==0){
+			return flist;
+		}
+		Field f=new Field();
+		String sql="select * from Filed where fid=?";
+		this.ConnetOrcl();
+		java.sql.PreparedStatement ps =this.conn.prepareStatement(sql);
+		ps.setInt(1, fid);
+		java.sql.ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			f.setFid(rs.getInt(1));
+			f.setPid(rs.getInt(2));
+			f.setUserid(rs.getInt(3));
+			f.setFname(rs.getString(4));
+			f.setFtext(rs.getString(5));
+			f.setFatherid(rs.getInt(6));
+			f.setFdate(rs.getDate(7));
+		}
+		f.setAuthor(this.findAuthor(f.getUserid()));
+		flist.add(f);
+		return trackback(f.getFatherid());
+	}
 
 }

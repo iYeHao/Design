@@ -60,4 +60,18 @@ public class filedImp {
 		}
 		return file;
 	}
+	public ArrayList<Field> trackback(int fid) {
+		// TODO Auto-generated method stub
+		ArrayList<Field> flist = new ArrayList<Field>();
+		filedDao dao=new filedDao();
+		try {
+			flist=dao.trackback(fid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dao.Close();
+		}
+		return  flist;
+	}
 }

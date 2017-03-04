@@ -143,6 +143,13 @@
     <servlet-name>acount5_Servlet</servlet-name>
     <servlet-class>com.example.servlet.acount5_Servlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>timelineServlet</servlet-name>
+    <servlet-class>com.example.servlet.timelineServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -257,6 +264,10 @@
   <servlet-mapping>
     <servlet-name>acount5_Servlet</servlet-name>
     <url-pattern>/acount5_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>timelineServlet</servlet-name>
+    <url-pattern>/timelineServlet</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
