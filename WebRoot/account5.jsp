@@ -11,8 +11,6 @@ request.setAttribute("uname", uname);
  	@SuppressWarnings("unchecked")
 ArrayList<Field> flist =(ArrayList<Field>)request.getAttribute("flist");
 request.setAttribute("flist", flist);
-Field f =flist.get(0);
-request.setAttribute("f", f);
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">

@@ -51,7 +51,7 @@ h2.top_title span{font-size:12px; color:#666;font-weight:500}
 			<a href="" class="cd-read-more" target="_blank">阅读全文</a>
 			<span class="cd-date"><p>Time:<c:out value="${f.fdate}"></c:out></p>
 			<p>Author:<c:out value="${f.author}"></c:out></p>
-			<p>contribution:<c:out value="${f.author}"></c:out></p>
+			<p>contribution:<c:out value="${f.contribution}"></c:out></p>
 			</span>
 			
 		</div>
