@@ -22,7 +22,7 @@ public class userImp {
 		return ulist;
 		
 	}
-	public User DetailShow(int userid){
+	public User DetailShow(String userid){
 		User user =new User();
 		UserDao dao =new UserDao();
 		try {
@@ -35,7 +35,7 @@ public class userImp {
 		}
 		return user;
 	}
-	public void Delete(int userid){
+	public void Delete(String userid){
 		UserDao dao = new UserDao();
 		try {
 			dao.Delete(userid);
@@ -92,7 +92,7 @@ public class userImp {
 		return b;
 		
 	}
-	public User revise(int userid ,String uname, String usex, String urealname, int uage,
+	public User revise(String userid ,String uname, String usex, String urealname, int uage,
 			String uposition, String uemail) {
 		// TODO Auto-generated method stub
 		User user =new User();
@@ -107,7 +107,7 @@ public class userImp {
 		}
 		return user;
 	}
-	public void revisepassword(String newpassword,int userid) {
+	public void revisepassword(String newpassword,String userid) {
 		// TODO Auto-generated method stub
 		UserDao dao=new UserDao();
 		try {

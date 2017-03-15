@@ -49,8 +49,7 @@ abbr[title] {
 }
 b,
 strong {
-	font-weight: bold;
-	font-size: 36px;
+  font-weight: bold;
 }
 dfn {
   font-style: italic;
@@ -181,9 +180,7 @@ table {
 }
 td,
 th {
-	padding: 0;
-	color: #6F7D94;
-	font-size: 24px;
+  padding: 0;
 }
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {

@@ -5,19 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.UUID;
 
-import oracle.jdbc.OraclePreparedStatement;
-import oracle.jdbc.OracleTypes;
-
-import com.example.daoimp.VersionImp;
 import com.example.demo.Field;
-import com.example.demo.Version;
 
 public class filedDao extends baseDao{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/*
+	 * 所有filed的列表
+	 */
 
 	public ArrayList<Field> show() throws SQLException{
 		
@@ -28,7 +27,7 @@ public class filedDao extends baseDao{
 		ResultSet rs =ps.executeQuery();
 		while(rs.next()){
 			Field filed =new Field();
-			filed.setFid(rs.getInt(1));
+			filed.setFid(rs.getString(1));
 			filed.setFname(rs.getString(4));
 			int end =rs.getString(5).length();
 			if(end>=30){
@@ -37,13 +36,16 @@ public class filedDao extends baseDao{
 			{
 			}
 			filed.setFtext(rs.getString(5).substring(0,end));
-			filed.setUserid(rs.getInt(3));
+			filed.setUserid(rs.getString(3));
 			filed.setFdate(rs.getDate(7));
 			flist.add(filed);
 		}
 		return flist;
 	}
-	public Field filedcheck(int fid) throws SQLException{
+	/*
+	 * filed的详情
+	 */
+	public Field filedcheck(String fid) throws SQLException{
 		Field f = new Field();
 		String sql="select * from filed where fid=?";
 		this.ConnetOrcl();
@@ -53,9 +55,9 @@ public class filedDao extends baseDao{
 		while(rs.next()){
 			f.setFid(fid);
 			f.setFdate(rs.getDate(7));
-			f.setFatherid(rs.getInt(6));
-			f.setPid(rs.getInt(2));
-			f.setUserid(rs.getInt(3));
+			f.setFatherid(rs.getString(6));
+			f.setPid(rs.getString(2));
+			f.setUserid(rs.getString(3));
 			f.setFname(rs.getString(4));
 			f.setFtext(rs.getString(5));
 		}
@@ -75,42 +77,81 @@ public class filedDao extends baseDao{
 		}
 		return f;
 	}
-	public void deletefiled(int fid) throws SQLException{
+	/*
+	 * 删除field
+	 */
+	public void deletefiled(String fid) throws SQLException{
 		String sql="delete from filed where fid = ?";
 		this.ConnetOrcl();
 		java.sql.PreparedStatement ps = this.conn.prepareStatement(sql);
 		ps.setObject(1, fid);
 		ps.execute();
 	}
-	public Field addfiled(String ftext,String fname,int userid,int pid,Date date) throws SQLException{
+	/*
+	 * 添加field
+	 */
+	public Field addfiled(String ftext,String fname,String userid,String pid,Date date) throws SQLException{
 		Field f=new Field();
-		String sql="insert into filed (ftext,fname,userid,pid,fdate,fatherid) values(?,?,?,?,?,?) returning fid into ?";
-		String sql2 = "insert into version (fid, pid, createtime, userid, vtext, vparent) select fid, ?, ?, ?, ?, 0 from field_base where fname = ?";
+		String sql="insert into filed (ftext,fname,userid,pid,fdate,fatherid,fid) values(?,?,?,?,?,?,?)";
 		this.ConnetOrcl();
+		String fid=UUID.randomUUID().toString();
 		int fatherid=0;
-		OraclePreparedStatement ps=(OraclePreparedStatement)this.conn.prepareStatement(sql);
+		java.sql.PreparedStatement ps=this.conn.prepareStatement(sql);
 		ps.setString(1, ftext);
 		ps.setString(2, fname);
-		ps.setInt(3, userid);
-		ps.setInt(4, pid);
+		ps.setString(3, userid);
+		ps.setString(4, pid);
 		ps.setDate(5, date);
 		ps.setInt(6, fatherid);
-		ps.registerReturnParameter(7, OracleTypes.INTEGER);
-		int count = ps.executeUpdate();
-		if(count > 0) {
-			ResultSet rs = ps.getReturnResultSet();
-			rs.next();
-			f.setFid(rs.getInt(1));
-		}
+		ps.setString(7, fid);
+		ps.execute();
+		f.setFid(fid);
 		f.setFtext(ftext);
-		PreparedStatement ps2 = this.conn.prepareStatement(sql2);
-		ps2.setInt(1, pid);
-		ps2.setDate(2, date);
-		ps2.setInt(3, userid);
-		ps2.setString(4, ftext);
-		ps2.setString(5, fname);
-		ps2.executeUpdate();
 		return f;
+	}
+	/*
+	 * 查找field的作者
+	 */
+	public String findAuthor(String userid) throws SQLException{
+		String author=null;
+		String sql="select * from users where userid=?";
+		this.ConnetOrcl();
+		java.sql.PreparedStatement ps =this.conn.prepareStatement(sql);
+		ps.setString(1, userid);
+		java.sql.ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			author=rs.getString(3);
+		}
+		return author;
+	}
+	ArrayList<Field> flist = new ArrayList<Field>();
+	/*
+	 * field 的回溯
+	 */
+	public ArrayList<Field> trackback(String fid) throws SQLException {
+		// TODO Auto-generated method stub
+
+		if(fid==null){
+			return flist;
+		}
+		Field f=new Field();
+		String sql="select * from Filed where fid=?";
+		this.ConnetOrcl();
+		java.sql.PreparedStatement ps =this.conn.prepareStatement(sql);
+		ps.setString(1, fid);
+		java.sql.ResultSet rs=ps.executeQuery();
+		while(rs.next()){
+			f.setFid(rs.getString(1));
+			f.setPid(rs.getString(2));
+			f.setUserid(rs.getString(3));
+			f.setFname(rs.getString(4));
+			f.setFtext(rs.getString(5));
+			f.setFatherid(rs.getString(6));
+			f.setFdate(rs.getDate(7));
+		}
+		f.setAuthor(this.findAuthor(f.getUserid()));
+		flist.add(f);
+		return trackback(f.getFatherid());
 	}
 
 }

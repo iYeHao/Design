@@ -3,15 +3,18 @@ package com.example.demo;
 import java.sql.Date;
 
 public class Field {
-	private int fid;
-	private int pid;
-	private int userid;
+	private double contribution;
+	private String fid;
+	private String pid;
+	private String userid;
 	private String fname;
 	private String ftext;
-	private int fatherid;
+	private String fatherid;
 	private Date fdate;
 	private String author;
 	private String planname;
+	public void setContribution(double contribution){this.contribution=contribution;}
+	public double getContribution(){return contribution;}
 	public void setPlanname(String planname){
 		this.planname=planname;
 	}
@@ -24,24 +27,24 @@ public class Field {
 	public String getAuthor(){
 		return author;
 	}
-	public void setFid(int fid){
+	public void setFid(String fid){
 		this.fid=fid;
 	}
-	public int getFid(){
+	public String getFid(){
 		return fid;
 	}
-	public void setPid(int pid)
+	public void setPid(String pid)
 	{
 		this.pid=pid;
 	}
-	public int getPid(){
+	public String getPid(){
 		return pid;
 	}
-	public void setUserid(int userid)
+	public void setUserid(String userid)
 	{
 		this.userid=userid;
 	}
-	public int getUserid(){
+	public String getUserid(){
 		return userid;
 	}
 	public void setFname(String fname)
@@ -60,11 +63,11 @@ public class Field {
 	{
 		return ftext;
 	}
-	public void setFatherid(int fatherid)
+	public void setFatherid(String fatherid)
 	{
 		this.fatherid=fatherid;
 	}
-	public int getFatherid(){
+	public String getFatherid(){
 		return fatherid;
 	}
 	public void setFdate(Date fdate){

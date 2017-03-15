@@ -140,27 +140,36 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>planlist_Servlet</servlet-name>
-    <servlet-class>com.example.servlet.planlist_Servlet</servlet-class>
+    <servlet-name>acount5_Servlet</servlet-name>
+    <servlet-class>com.example.servlet.acount5_Servlet</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>fragindex_Servlet</servlet-name>
-    <servlet-class>com.example.servlet.fragindex_Servlet</servlet-class>
+    <servlet-name>timelineServlet</servlet-name>
+    <servlet-class>com.example.servlet.timelineServlet</servlet-class>
   </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>fragout_Servlet</servlet-name>
-    <servlet-class>com.example.servlet.fragout_Servlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>version_Servlet</servlet-name>
-    <servlet-class>com.example.servlet.version_Servlet</servlet-class>
-  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -253,20 +262,12 @@
     <url-pattern>/newplan13_Servlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>planlist_Servlet</servlet-name>
-    <url-pattern>/planlist_Servlet</url-pattern>
+    <servlet-name>acount5_Servlet</servlet-name>
+    <url-pattern>/acount5_Servlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>fragindex_Servlet</servlet-name>
-    <url-pattern>/fragindex_Servlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>fragout_Servlet</servlet-name>
-    <url-pattern>/fragout_Servlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>version_Servlet</servlet-name>
-    <url-pattern>/version_Servlet</url-pattern>
+    <servlet-name>timelineServlet</servlet-name>
+    <url-pattern>/timelineServlet</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.sql.Date;
 
 import com.example.demo.Plan;
@@ -15,37 +16,25 @@ public class planDao extends baseDao {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public ArrayList<Plan> show(String searchStr) throws SQLException{
+	public ArrayList<Plan>show() throws SQLException{
 		ArrayList<Plan> plist = new ArrayList<Plan>();
-		String sql="select t.pid, t.userid, t.ptype, t.pname, t.pdate, u.uname from plan t left join users u on t.userid = u.userid where t.pname like ?" +
-				" or t.ptype like ? or u.uname like ? order by t.pdate desc";
-		String sql2 = "select t.pid, t.userid, t.ptype, t.pname, t.pdate, u.uname from plan t left join users u on t.userid = u.userid order by t.pdate desc";
+		String sql="select * from plan";
+		Plan plan= new Plan();
 		this.ConnetOrcl();
-		PreparedStatement ps = null;
-		if(searchStr == null || searchStr.equals("")) {
-			ps = this.conn.prepareStatement(sql2);
-		} else {
-			ps = this.conn.prepareStatement(sql);
-			String str = "%" + searchStr + "%";
-			ps.setObject(1, str);
-			ps.setObject(2, str);
-			ps.setObject(3, str);
-		}
+		PreparedStatement ps = this.conn.prepareStatement(sql);
 		ResultSet rs =ps.executeQuery();
 		while(rs.next())
 		{
-			Plan plan= new Plan();
-			plan.setPid(rs.getInt(1));
-			plan.setUserid(rs.getInt(2));
-			plan.setPtype(rs.getString(3));
+			plan.setPid(rs.getString(1));
 			plan.setPname(rs.getString(4));
+			plan.setPtype(rs.getString(3));
 			plan.setPdate(rs.getDate(5));
-			plan.setUsername(rs.getString(6));
+			plan.setUserid(rs.getString(2));
 			plist.add(plan);
 		}
 		return plist;
 	}
-	public ArrayList<Plan> DetailShow(int userid) throws SQLException{
+	public ArrayList<Plan> DetailShow(String userid) throws SQLException{
 		String sql="select * from plan where userid =?";
 		ArrayList<Plan> planlist= new ArrayList<Plan>();
 		Plan plan=new Plan();
@@ -55,32 +44,16 @@ public class planDao extends baseDao {
 		ResultSet rs =ps.executeQuery();
 		while(rs.next())
 		{
-			plan.setPid(rs.getInt(1));
+			plan.setPid(rs.getString(1));
 			plan.setPname(rs.getString(4));
 			plan.setPtype(rs.getString(3));
 			plan.setPdate(rs.getDate(5));
-			plan.setUserid(rs.getInt(2));
+			plan.setUserid(rs.getString(2));
 			planlist.add(plan);
 		}
 		return planlist;
 	}
-	public Plan PlanShow(int pid) throws SQLException{
-		String sql="select t.pid,t.pname,t.pdate,u.uname from plan t left join USERS u on t.userid=u.userid where pid=?";
-		Plan plan= new Plan();
-		this.ConnetOrcl();
-		PreparedStatement ps = this.conn.prepareStatement(sql);
-		ps.setObject(1, pid);
-		ResultSet rs =ps.executeQuery();
-		if(rs.next())
-		{
-			plan.setPid(rs.getInt(1));
-			plan.setPname(rs.getString(2));
-			plan.setPdate(rs.getDate(3));
-			plan.setUsername(rs.getString(4));
-		}
-		return plan;
-	}
-	public Plan PlanCheck(int pid) throws SQLException{
+	public Plan PlanCheck(String pid) throws SQLException{
 		Plan plan =new Plan();
 		String sql="select * from plan where pid = ?";
 		this.ConnetOrcl();
@@ -88,11 +61,11 @@ public class planDao extends baseDao {
 		ps.setObject(1, pid);
 		java.sql.ResultSet rs =ps.executeQuery();
 		while(rs.next()){
-			plan.setPid(rs.getInt(1));
+			plan.setPid(rs.getString(1));
 			plan.setPname(rs.getString(4));
 			plan.setPtype(rs.getString(3));
 			plan.setPdate(rs.getDate(5));
-			plan.setUserid(rs.getInt(2));
+			plan.setUserid(rs.getString(2));
 		}
 	  String ssql="select * from users where userid= ?";
 	  java.sql.PreparedStatement pps =this.conn.prepareStatement(ssql);
@@ -103,10 +76,10 @@ public class planDao extends baseDao {
 	  }
 		return plan;
 	}
-	public int addplan(String pname, String ptype, Date d, int userid) throws SQLException {
+	public String addplan(String pname, String ptype, Date d, String userid) throws SQLException {
 		// TODO Auto-generated method stub
 
-		int pid=(int) (Math.random()*1000);
+		String pid=UUID.randomUUID().toString();
 		String sql="Insert into Plan (pid,userid,pname,ptype,pdate) values(?,?,?,?,?)";
 		this.ConnetOrcl();
 		java.sql.PreparedStatement ps=this.conn.prepareStatement(sql);

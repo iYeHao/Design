@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
     		response.setCharacterEncoding("UTF-8");
 			javax.servlet.http.HttpSession session1=request.getSession();
 			session1.setAttribute("uname", username);
-			int userid=b.getUserid();
+			String userid=b.getUserid();
 			session1.setAttribute("userid", userid);
 		request.getRequestDispatcher("index.jsp").forward(request, response);}
 		else{
