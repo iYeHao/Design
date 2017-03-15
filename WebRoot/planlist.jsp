@@ -1,25 +1,58 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="com.example.demo.Field" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.example.demo.Plan" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-HttpSession session1= request.getSession();
-String uname=(String)session1.getAttribute("uname");
-if(uname==null){uname="我的账户";}
-request.setAttribute("uname", uname);
- 	@SuppressWarnings("unchecked")
-ArrayList<Field> flist =(ArrayList<Field>)request.getAttribute("flist");
-request.setAttribute("flist", flist);
+List<Plan> plans = (List<Plan>)request.getAttribute("plans");
 %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    <base href="<%=basePath%>">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/Fourth.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>我的账户</title>
+<title>预案列表</title>
+<link href="css/style3.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/bootstrap1.css" rel="stylesheet" type="text/css" media="all" />
+
+<script src="js/jquery.min.js"></script>
+<!-- //js -->
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Eco Travel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- pop-up -->
+<link rel="stylesheet" href="css/touchTouch.css" type="text/css" media="all" />
+<script type="text/javascript" src="js/jquery.fancybox.js"></script>
+	   <script type="text/javascript">
+			$(document).ready(function() {
+				/*
+				 *  Simple image gallery. Uses default settings
+				 */
+
+				$('.fancybox').fancybox();
+
+			});
+		</script>
+<!-- pop-up -->
+<style type="text/css">list-style:none;</style>
 <!-- InstanceEndEditable -->
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
@@ -74,27 +107,13 @@ a:hover, a:active, a:focus { /* 此组选择器将为键盘导航者提供与鼠
 	background-color: #6F7D94;
 }
 
-/* ~~ 以下是此布局的列。 ~~ 
+/* ~~ 这是布局信息。 ~~ 
 
 1) 填充只会放置于 div 的顶部和/或底部。此 div 中的元素侧边会有填充。这样，您可以避免使用任何“方框模型数学”。请注意，如果向 div 自身添加任何侧边填充或边框，这些侧边填充或边框将与您定义的宽度相加，得出 *总计* 宽度。您也可以选择删除 div 中的元素的填充，并在该元素中另外放置一个没有任何宽度但具有设计所需填充的 div。
 
-2) 由于这些列均为浮动列，因此未对其指定边距。如果必须添加边距，请避免在浮动方向一侧放置边距（例如：div 中的右边距设置为向右浮动）。在很多情况下，都可以改用填充。对于必须打破此规则的 div，应向该 div 的规则中添加“display:inline”声明，以控制某些版本的 Internet Explorer 会使边距翻倍的错误。
-
-3) 由于可以在一个文档中多次使用类（并且一个元素可以应用多个类），因此已向这些列分配类名，而不是 ID。例如，必要时可堆叠两个侧栏 div。您可以根据个人偏好将这些名称轻松地改为 ID，前提是仅对每个文档使用一次。
-
-4) 如果您更喜欢在右侧（而不是左侧）进行导航，只需使这些列向相反方向浮动（全部向右，而非全部向左），它们将按相反顺序显示。您无需在 HTML 源文件中移动 div。
-
 */
-.sidebar1 {
-	float: left;
-	width: 20%;
-	background-color: #93A5C4;
-	padding-bottom: 10px;
-}
 .content {
 	padding: 10px 0;
-	width: 80%;
-	float: left;
 }
 
 /* ~~ 此分组的选择器为 .content 区域中的列表提供了空间 ~~ */
@@ -102,33 +121,10 @@ a:hover, a:active, a:focus { /* 此组选择器将为键盘导航者提供与鼠
 	padding: 0 15px 15px 40px; /* 此填充反映上述标题和段落规则中的右填充。填充放置于下方可用于间隔列表中其它元素，置于左侧可用于创建缩进。您可以根据需要进行调整。 */
 }
 
-/* ~~ 导航列表样式（如果选择使用预先创建的 Spry 等弹出菜单，则可以删除此样式） ~~ */
-ul.nav {
-	list-style: none; /* 这将删除列表标记 */
-	border-top: 1px solid #666; /* 这将为链接创建上边框 – 使用下边框将所有其它项放置在 LI 中 */
-	margin-bottom: 15px; /* 这将在下面内容的导航之间创建间距 */
-}
-ul.nav li {
-	border-bottom: 1px solid #666; /* 这将创建按钮间隔 */
-}
-ul.nav a, ul.nav a:visited { /* 对这些选择器进行分组可确保链接即使在访问之后也能保持其按钮外观 */
-	padding: 5px 5px 5px 15px;
-	display: block; /* 这将为链接赋予块属性，使其填满包含它的整个 LI。这样，整个区域都可以响应鼠标单击操作。 */
-	text-decoration: none;
-	background-color: #8090AB;
-	color: #000;
-}
-ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 这将更改鼠标和键盘导航的背景和文本颜色 */
-	background-color: #6F7D94;
-	color: #FFF;
-}
-
 /* ~~ 脚注 ~~ */
 .footer {
 	padding: 10px 0;
 	background-color: #6F7D94;
-	position: relative;/* 这可以使 IE6 hasLayout 以正确方式进行清除 */
-	clear: both; /* 此清除属性强制 .container 了解列的结束位置以及包含列的位置 */
 }
 
 /* ~~ 其它浮动/清除类 ~~ */
@@ -146,52 +142,56 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 这将更改鼠标和键盘
 	font-size: 1px;
 	line-height: 0px;
 }
+.container .header #form1 div strong {
+	color: #FFF;
+}
 -->
-</style><!--[if lte IE 7]>
-<style>
-.content { margin-right: -1px; } /* 此 1px 负边距可以放置在此布局中的任何列中，且具有相同的校正效果。 */
-ul.nav a { zoom: 1; }  /* 缩放属性将为 IE 提供其需要的 hasLayout 触发器，用于校正链接之间的额外空白 */
-</style>
-<![endif]--></head>
+</style></head>
 
 <body>
 
 <div class="container">
-  <div class="header"><a href="#"><img src="images/logo.jpg" alt="在此处插入徽标" name="Insert_logo" width="500" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
-    <p style="margin-left:80%">当前用户：
-    <c:out value="${uname}"></c:out>	
-    <a href="index.jsp"><input style="margin-left:20%" name="submit2" type="submit" class="logout_user" value="返回主页"/></a></p>
-    </div>
-  <div class="sidebar1">
-  <h3>用户资料</h3>
-    <ul class="nav">
-      <li><a href="account1_Servlet">基本信息</a></li>
-      <li><a href="account2_Servlet">修改资料</a></li>
-      <li><a href="account3_Servlet">修改密码</a></li>
-      </ul>
-      <h3>预案资料</h3>
-      <ul class ="nav">
-      <li><a href="account4_Servlet">我发布的预案</a></li
-    	</ul>
-    <h3>字段资料</h3>
-    <ul class="nav">
-    <li><a href="acount5_Servlet">我修改的字段</a></li>
-    </ul>
-		<hr />
-  </div><!-- end .sidebar1 -->
+  <div class="header"><a href="index.html"><img src="images/logo.jpg" alt="在此处插入徽标" name="Insert_logo" width="500" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a><!-- end .header --></div>
   <div class="content"><!-- InstanceBeginEditable name="EditRegion3" -->
-    <form id="form1" name="form1" method="post" action="">
- 
-                <fieldset style="width:80%; float:left;">
-                  <c:forEach  var="f" items="${flist}">
-                  
-                	<p><h4>字段名：<c:out value="${f.fname}"></c:out></h4> 
-                    <p><h4>字段内容：<c:out value="${f.ftext}"></c:out></h4> 
-                    </c:forEach>
-					</fieldset>
-    
-    </form>
-    <p>&nbsp;</p>
+   <div class="banner-bdy con">
+	<div class="container">
+	<div class="mainWrap cf">
+				<div class="search-box">
+					<div class="search-body">
+<form method="get"  action="planlist_Servlet" id="f1" class="search-form">
+				  <input type="text" id="k2" name="searchStr"  class=" input-search" value="" autocomplete="off">
+							<input  type="submit" class="search-btn" value="搜索">
+					  </form>
+				  </div>
+				</div>
+				
+			<div class="ui-box cf">
+				<div class="ui-title">
+					<h1 class="ui-title-cnt fn-left"><span class="a">(共发布<%=plans.size() %>篇预案)</span></h1>
+				</div>
+				<ul class=" travel-log-list gonglue-list">
+				<% for(int i = 0; i < plans.size(); i++) {
+					Plan plan = plans.get(i);
+				 %>
+					<li>
+					  <div class="gonglue_info fn-left">
+					    <h3> <a target="_blank" href="fragindex_Servlet?pid=<%=plan.getPid() %>"  title="【2013年7月1日-2013年7月5日】苏州行"><%=plan.getPname() %></a></h3>
+						<p>&nbsp;&nbsp;类型：<%=plan.getPtype() %>						</p>
+						<p>&nbsp;&nbsp;发布者: <a target="_blank" href="account1_Servlet"><%=plan.getUsername() %></a>&nbsp;&nbsp;&nbsp;&nbsp;发布时间：<%=plan.getPdate() %></p>	
+					  </div>
+					</li>
+					<%
+					} %>
+				</ul>
+				<div class="ui-title-subcnt fn-right">
+					<a target="_blank" href="planlist_Servlet" >+查看更多</a>
+				</div>
+			</div>  
+		</div>
+</div>
+
+<!-- //login-page -->
+</div>
   <!-- InstanceEndEditable -->
   <!-- end .content --></div>
   <div class="footer">

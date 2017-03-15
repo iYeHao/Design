@@ -50,10 +50,10 @@ public class planindex_Servlet extends HttpServlet {
 		String ptype  = new String (request.getParameter("ptype").getBytes("8859_1"),"utf-8");
 		java.util.Date date =(java.util.Date) request.getSession().getAttribute("date");
 		Date d=new Date(date.getTime());
-		String userid =(String) request.getSession().getAttribute("userid");
+		int userid =(Integer) request.getSession().getAttribute("userid");
 		planImp imp =new planImp();
-		String pid=imp.addplan(pname,ptype,d,userid);
-		if(pid!=null){
+		int pid=imp.addplan(pname,ptype,d,userid);
+		if(pid!=0){
 			response.setHeader("Content-type", "text/html;charset=UTF-8");
 			javax.servlet.http.HttpSession session1=request.getSession();
 			session1.setAttribute("pid", pid);

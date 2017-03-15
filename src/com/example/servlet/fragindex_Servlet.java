@@ -1,28 +1,24 @@
 package com.example.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.daoimp.filedImp;
-import com.example.demo.Field;
-import com.common.code.*;
+import com.example.daoimp.FieldBaseImp;
+import com.example.daoimp.planImp;
+import com.example.demo.MainField;
+import com.example.demo.Plan;
 
-public class timelineServlet extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class fragindex_Servlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public timelineServlet() {
+	public fragindex_Servlet() {
 		super();
 	}
 
@@ -46,43 +42,16 @@ public class timelineServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		String fid ="123456";
-		filedImp imp =new filedImp();
-		ArrayList<Field> flist =imp.trackback(fid);
-		int size=flist.size();
-		if(size!=0){
-			String str1=flist.get(0).getFtext();
-			if(size==1){
-				flist.get(0).setContribution(1);
-				request.setAttribute("flist", flist);
-				request.getRequestDispatcher("/time.jsp").forward(request, response);
-			}else{
-			String str2=null;
-			double s[]=new double [size];//个个版本和最终版本的相似度
-			s[0]=1;
-			double c[]=new double[size];//个个版本的作者的贡献度
-			TextAnalyse ta=new TextAnalyse();
-		for(int i=1;i<size;i++){
-			 str2=flist.get(i).getFtext();
-			 s[i]=ta.getSimilarity(str1, str2);
-			 System.out.println(s[i]);
-		}
-		for(int i=0;s.length-i-2>=0;i++){
-			c[i]=(s[s.length-i-2]-s[s.length-i-1])/(1-s[s.length-1]);
-			System.out.println(c[i]);
-		}
-		for(int i=0;i<c.length-1;i++){
-			System.out.println(c.length);
-			flist.get(i).setContribution(c[c.length-i-2]);
-		}
-		}
-		}else{
-			request.setAttribute("flist", flist);
-			request.getRequestDispatcher("/time.jsp").forward(request, response);
-		}
-		request.setAttribute("flist", flist);
-		request.getRequestDispatcher("/timeline.jsp").forward(request, response);
+		int pid= Integer.parseInt((String)request.getParameter("pid"));
+		planImp imp = new planImp();
+		FieldBaseImp fimp = new FieldBaseImp();
+		Plan plan = imp.showPlan(pid);
+		List<MainField> fields = fimp.getMainFields();
+		request.setAttribute("plan", plan);
+		request.setAttribute("fields", fields);
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		request.getRequestDispatcher("/fragindex.jsp").forward(request, response);
 		
 	}
 

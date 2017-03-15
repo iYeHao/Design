@@ -1,7 +1,9 @@
 eclipse.preferences.version=1
+encoding//WebRoot/Version.jsp=UTF-8
 encoding//WebRoot/account1.jsp=UTF-8
 encoding//WebRoot/account2.jsp=UTF-8
+encoding//WebRoot/fragindex.jsp=UTF-8
+encoding//WebRoot/fragout.jsp=UTF-8
 encoding//WebRoot/login.jsp=UTF-8
 encoding//WebRoot/newplan.jsp=UTF-8
-encoding//WebRoot/timeline.jsp=UTF-8
-encoding//src/com/common/code/TextAnalyse.java=UTF-8
+encoding//WebRoot/planlist.jsp=UTF-8

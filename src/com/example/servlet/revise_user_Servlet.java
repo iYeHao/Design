@@ -47,7 +47,7 @@ public class revise_user_Servlet extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		userImp imp =new userImp();
-		String userid=(String) request.getSession().getAttribute("userid");
+		int userid=(Integer) request.getSession().getAttribute("userid");
 		String uname=request.getParameter("uname");
 		String usex=request.getParameter("usex");
 		String urealname=new String(request.getParameter("urealname").getBytes("8859_1"),"utf-8");
@@ -55,7 +55,7 @@ public class revise_user_Servlet extends HttpServlet {
 		String uposition =new String(request.getParameter("uposition").getBytes("8859_1"),"utf-8");
 		String uemail =request.getParameter("uemail");
 		User b=imp.revise(userid,uname,usex,urealname,uage,uposition,uemail);
-		if(b.getUserid()!=null){
+		if(b.getUserid()!=0){
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher("account1_Servlet").forward(request, response);

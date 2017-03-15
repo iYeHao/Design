@@ -1,7 +1,7 @@
 package com.example.demo;
 
 public class User {
-	private String userid;
+	private int userid;
 	private String uemail;
 	private String uname;
 	private String upassword;
@@ -10,10 +10,10 @@ public class User {
 	private String usex;
 	private String uposition;
 	private String urealname;
-	public void setUserid(String userid){
+	public void setUserid(int userid){
 		this.userid=userid;
 	}
-	public String getUserid(){
+	public int getUserid(){
 		return userid;
 	}
 	public void setUemail(String uemail){

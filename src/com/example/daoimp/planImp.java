@@ -8,11 +8,11 @@ import com.example.dao.planDao;
 import com.example.demo.Plan;
 
 public class planImp {
-public ArrayList<Plan> show(){
+public ArrayList<Plan> show(String searchStr){
 	ArrayList<Plan> plist =new ArrayList<Plan>();
 	planDao dao =new planDao();
 	try {
-		plist=dao.show();
+		plist=dao.show(searchStr);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -21,7 +21,7 @@ public ArrayList<Plan> show(){
 	}
 	return plist;
 }
-public ArrayList<Plan> ShowDetail(String userid){
+public ArrayList<Plan> ShowDetail(int userid){
 	ArrayList<Plan> planlist =new ArrayList<Plan>();
 	planDao dao =new planDao();
 	try {
@@ -34,7 +34,20 @@ public ArrayList<Plan> ShowDetail(String userid){
 	}
 	return planlist;
 }
-public Plan PlanCheck(String pid){
+public Plan showPlan(int pid){
+	Plan plan = null;
+	planDao dao =new planDao();
+	try {
+		plan =dao.PlanShow(pid);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally{
+		dao.Close();
+	}
+	return plan;
+}
+public Plan PlanCheck(int pid){
 	Plan plan =new Plan();
 	planDao dao = new planDao();
 	try {
@@ -47,9 +60,9 @@ public Plan PlanCheck(String pid){
 	}
 	return plan;
 }
-public String addplan(String pname, String ptype, Date d, String userid) {
+public int addplan(String pname, String ptype, Date d, int userid) {
 	// TODO Auto-generated method stub
-	String pid=null;
+	int pid=0;
 	planDao dao =new planDao();
 	try {
 		pid=dao.addplan(pname,ptype,d,userid);

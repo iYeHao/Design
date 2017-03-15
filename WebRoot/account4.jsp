@@ -172,10 +172,11 @@ ul.nav a { zoom: 1; }  /* 缩放属性将为 IE 提供其需要的 hasLayout 触
       <h3>预案资料</h3>
       <ul class ="nav">
       <li><a href="account4_Servlet">我发布的预案</a></li>
+      <li><a href="account5.">我修改的预案  </a></li>
     	</ul>
     <h3>字段资料</h3>
     <ul class="nav">
-    <li><a href="acount5_Servlet">我修改的字段</a></li>
+    <li><a href="account6.jsp">我修改的字段</a></li>
     </ul>
 		<hr />
   </div><!-- end .sidebar1 -->

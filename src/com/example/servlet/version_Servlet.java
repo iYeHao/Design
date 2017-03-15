@@ -1,27 +1,29 @@
 package com.example.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.example.daoimp.filedImp;
-import com.example.demo.Field;
+import org.kopitubruk.util.json.JSONConfig;
+import org.kopitubruk.util.json.JSONUtil;
 
-public class acount5_Servlet extends HttpServlet {
+import com.example.daoimp.FieldBaseImp;
+import com.example.daoimp.VersionImp;
+import com.example.daoimp.planImp;
+import com.example.demo.Plan;
+import com.example.demo.VersionLink;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class version_Servlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public  acount5_Servlet() {
+	public version_Servlet() {
 		super();
 	}
 
@@ -45,12 +47,24 @@ public class acount5_Servlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		filedImp imp =new filedImp();
-		ArrayList<Field> flist = new ArrayList<Field> ();
-		flist=imp.show();
-		request.setAttribute("flist", flist);
-		request.getRequestDispatcher("/account5.jsp").forward(request, response);
-	
+
+		int pid = Integer.parseInt(request.getParameter("pid"));
+		int fid = Integer.parseInt(request.getParameter("fid"));
+		VersionImp vimp = new VersionImp();
+		planImp pimp = new planImp();
+		FieldBaseImp fimp = new FieldBaseImp();
+		List<VersionLink> links = vimp.getLinks(pid, fid);
+		JSONConfig cfg = new JSONConfig();
+		cfg.addReflectClass(VersionLink.class);
+		String json = JSONUtil.toJSON(links, cfg);
+		Plan plan = pimp.showPlan(pid);
+		String fieldName = fimp.getName(fid);
+		request.setAttribute("links", json);
+		request.setAttribute("plan", plan);
+		request.setAttribute("fieldName", fieldName);
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		request.getRequestDispatcher("/Version.jsp").forward(request, response);
 	}
 
 	/**
@@ -66,8 +80,7 @@ public class acount5_Servlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html");
-	this.doGet(request, response);
+		this.doGet(request, response);
 	}
 
 	/**

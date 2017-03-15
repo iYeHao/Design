@@ -2,7 +2,6 @@ package com.example.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.UUID;
 
 import com.example.demo.User;
 
@@ -20,7 +19,7 @@ public class UserDao extends baseDao{
 		java.sql.ResultSet rs = ps.executeQuery();
 		while(rs.next()){
 			User user=new User();
-			user.setUserid(rs.getString(1));
+			user.setUserid(rs.getInt(1));
 			user.setUpassword(rs.getString(4));
 			user.setUname(rs.getString(3));
 			user.setUemail(rs.getString(2));
@@ -31,7 +30,7 @@ public class UserDao extends baseDao{
 		}
 		return ulist;
 	}
-	public User DetailShow(String userid) throws SQLException{
+	public User DetailShow(int userid) throws SQLException{
 		User user =new User();
 		String sql="select * from users where userid = ?";
 		this.ConnetOrcl();
@@ -40,7 +39,7 @@ public class UserDao extends baseDao{
 		java.sql.ResultSet rs =ps.executeQuery();
 		while(rs.next()){
 			
-			user.setUserid(rs.getString(1));
+			user.setUserid(rs.getInt(1));
 			user.setUpassword(rs.getString(4));
 			user.setUname(rs.getString(3));
 			user.setUemail(rs.getString(2));
@@ -53,7 +52,7 @@ public class UserDao extends baseDao{
 		return user;
 		
 	}
-	public void Delete(String userid) throws SQLException{
+	public void Delete(int userid) throws SQLException{
 		String sql ="delete from plan where userid =?";
 		this.ConnetOrcl();
 		java.sql.PreparedStatement ps = this.conn.prepareStatement(sql);
@@ -72,14 +71,14 @@ public class UserDao extends baseDao{
 		java.sql.ResultSet rs =ps.executeQuery();
 		while(rs.next()){
 			
-			user.setUserid(rs.getString(1));
+			user.setUserid(rs.getInt(1));
 		}
 		return user;
 	}
 	public User register(String uemail, String uname, String upassword,
 			int uage, int ulevel, String usex) throws SQLException {
 		User user=null;
-		String userid=UUID.randomUUID().toString();
+		int userid =(int)( Math.random()*1000);
 		String sql="Insert into users (userid,uemail,uname,upassword,uage,ulevel,usex) values(?,?,?,?,?,?,?)";
 		this.ConnetOrcl();
 		java.sql.PreparedStatement ps =this.conn.prepareStatement(sql);
@@ -90,7 +89,7 @@ public class UserDao extends baseDao{
 		ps.setObject(5, uage);
 		ps.setObject(6, ulevel);
 		ps.setObject(7, usex);
-		ps.setString(1,userid);
+		ps.setInt(1,userid);
 		ps.setString(2, uemail);
 		ps.setString(3, uname);
 		ps.setString(4, upassword);
@@ -115,7 +114,7 @@ public class UserDao extends baseDao{
 		return b;
 		
 	}
-	public User revise(String userid,String uname, String usex, String urealname, int uage,
+	public User revise(int userid,String uname, String usex, String urealname, int uage,
 			String uposition, String uemail) throws SQLException {
 		// TODO Auto-generated method stub
 		User user=null;
@@ -129,7 +128,7 @@ public class UserDao extends baseDao{
 	ps.setObject(4, uage);
 	ps.setObject(5, uposition);
 	ps.setObject(6, uemail);
-	ps.setString(7,userid);
+	ps.setInt(7,userid);
 	ps.setString(1, uname);
 	ps.setString(2, usex);
 	ps.setString(3, urealname);
@@ -142,7 +141,7 @@ public class UserDao extends baseDao{
 	
 	return user;
 	}
-	public void revisepassword(String newpassword,String userid) throws SQLException {
+	public void revisepassword(String newpassword,int userid) throws SQLException {
 		// TODO Auto-generated method stub
 		String sql="update users set upassword=? where userid=?";
 		this.ConnetOrcl();
@@ -150,7 +149,7 @@ public class UserDao extends baseDao{
 		ps.setObject(1,newpassword);
 		ps.setObject(2, userid);
 		ps.setString(1, newpassword);
-		ps.setString(2, userid);
+		ps.setInt(2, userid);
 		ps.executeUpdate();
 	}
 
