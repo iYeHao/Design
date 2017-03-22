@@ -8,9 +8,11 @@ HttpSession session1= request.getSession();
 String uname=(String)session1.getAttribute("uname");
 if(uname==null){uname="我的账户";}
 request.setAttribute("uname", uname);
- 	@SuppressWarnings("unchecked")
+ @SuppressWarnings("unchecked")
 ArrayList<Field> flist =(ArrayList<Field>)request.getAttribute("flist");
 request.setAttribute("flist", flist);
+int page_current=(Integer)request.getAttribute("page_current");
+request.setAttribute("page_current", page_current);
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -118,8 +120,7 @@ ul.nav a, ul.nav a:visited { /* 对这些选择器进行分组可确保链接即
 	background-color: #8090AB;
 	color: #000;
 }
-ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 这将更改鼠标和键盘导航的背景和文本颜色 */
-	background-color: #6F7D94;
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 这将更改鼠标和键盘导航的背景和文本颜色 */	background-color: #6F7D94;
 	color: #FFF;
 }
 
@@ -127,7 +128,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* 这将更改鼠标和键盘
 .footer {
 	padding: 10px 0;
 	background-color: #6F7D94;
-	position: relative;/* 这可以使 IE6 hasLayout 以正确方式进行清除 */
+	position: relative;/* 这可以使 IE6 hasLayout 以正确方式进行清除 */                             
 	clear: both; /* 此清除属性强制 .container 了解列的结束位置以及包含列的位置 */
 }
 
@@ -180,23 +181,27 @@ ul.nav a { zoom: 1; }  /* 缩放属性将为 IE 提供其需要的 hasLayout 触
 		<hr />
   </div><!-- end .sidebar1 -->
   <div class="content"><!-- InstanceBeginEditable name="EditRegion3" -->
-    <form id="form1" name="form1" method="post" action="">
- 
                 <fieldset style="width:80%; float:left;">
-                  <c:forEach  var="f" items="${flist}">
-                  
-                	<p><h4>字段名：<c:out value="${f.fname}"></c:out></h4> 
-                    <p><h4>字段内容：<c:out value="${f.ftext}"></c:out></h4> 
+                  <c:forEach  var="f" items="${flist}" >
+                  <p>&nbsp;</p>
+                	<b><c:out value="${f.fname}"></c:out></b>
+                   	<div><c:out value="${f.ftext}"></c:out>
+                   	</div>
                     </c:forEach>
+                    <p>&nbsp;</p>
+                   <input type="submit" value="上一页"  onclick="location.href='pageCurrent_Servlet?page_next=1&page_current=${page_current}'">
+                  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  	<input type="button" value="当前${page_current}页">
+                  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   <input type="submit" value="下一页" onclick="location.href='pageCurrent_Servlet?page_next=2&page_current=${page_current}'">
 					</fieldset>
-    
-    </form>
     <p>&nbsp;</p>
   <!-- InstanceEndEditable -->
   <!-- end .content --></div>
   <div class="footer">
     <p align="center">copyright@应急预案后台管理人员</p>
     <!-- end .footer --></div>
-  <!-- end .container --></div>
+  <!-- end .container -- ></div>
 </body>
 <!-- InstanceEnd --></html>
+ 

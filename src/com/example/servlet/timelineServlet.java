@@ -2,6 +2,7 @@ package com.example.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +48,7 @@ public class timelineServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String fid ="123456";
+		String fid =request.getParameter("vid");
 		filedImp imp =new filedImp();
 		ArrayList<Field> flist =imp.trackback(fid);
 		int size=flist.size();
@@ -59,21 +60,40 @@ public class timelineServlet extends HttpServlet {
 				request.getRequestDispatcher("/time.jsp").forward(request, response);
 			}else{
 			String str2=null;
-			double s[]=new double [size];//个个版本和最终版本的相似度
-			s[0]=1;
+			double similar[]=new double [size];//个个版本和最终版本的字的相似度
+			double similar2[]=new double [size];//个个版本和最终版本的词的相似度
+			similar[0]=1;
+			flist.get(0).setSimilar(similar[0]);
+			similar2[0]=1;
+			flist.get(0).setSimilar2(similar2[0]);
 			double c[]=new double[size];//个个版本的作者的贡献度
-			TextAnalyse ta=new TextAnalyse();
 		for(int i=1;i<size;i++){
 			 str2=flist.get(i).getFtext();
-			 s[i]=ta.getSimilarity(str1, str2);
-			 System.out.println(s[i]);
+			 similar[i]=TextAnalyse.getSimilarity(str1, str2);
+			 flist.get(i).setSimilar(similar[i]);
 		}
-		for(int i=0;s.length-i-2>=0;i++){
-			c[i]=(s[s.length-i-2]-s[s.length-i-1])/(1-s[s.length-1]);
-			System.out.println(c[i]);
+		String doc1=str1.replaceAll("[\\pP‘’“”]", "");
+		Segmentation seg=new Segmentation();
+		String doc2=null;
+		List<String>f1=seg.seg_list(doc1);
+		List<String>f2=null;
+		for(int i=1;i<size;i++){
+			 str2=flist.get(i).getFtext();
+			 doc2=str2.replaceAll("[\\pP‘’“”]", "");
+			 Segmentation seg2=new Segmentation();
+				f2=seg2.seg_list(doc2);
+			 try {
+				similar2[i]=TextAnalyse.getSimilarity2(f1, f2);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 flist.get(i).setSimilar2(similar2[i]);
+		}
+		for(int i=0;similar.length-i-2>=0;i++){
+			c[i]=(similar[similar.length-i-2]-similar[similar.length-i-1])/(1-similar[similar.length-1]);
 		}
 		for(int i=0;i<c.length-1;i++){
-			System.out.println(c.length);
 			flist.get(i).setContribution(c[c.length-i-2]);
 		}
 		}

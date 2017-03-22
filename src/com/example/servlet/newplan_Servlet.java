@@ -62,7 +62,7 @@ public class newplan_Servlet extends HttpServlet {
 		f=imp.addfiled(ftext1, fname1, userid, pid, date);
 		flist.add(f);
 		String ftext2=new String(request.getParameter("fw").getBytes("8859_1"),"utf-8");
-		String fname2="  ”√∑∂Œß";
+		String fname2=" ‘”√∑∂Œß";
 		f=imp.addfiled(ftext2, fname2, userid, pid, date);
 		flist.add(f);
 		response.setHeader("Content-type", "text/html;charset=UTF-8");

@@ -10,7 +10,7 @@ public class Segmentation {
     /*
      * @param source 待分词的句子
      * @return 分词后的结果，用空格隔开。
-     * */
+     */
     public String seg_str(String source){
         sb.delete(0, sb.length());
         int len;
@@ -57,7 +57,8 @@ public class Segmentation {
             boolean find=false;
             while(word.length()>1){
                 if(DictionaryUtil.match(word)){
-                    ls.add(word);find=true;
+                    ls.add(word);
+                    find=true;
                     break;
                 }
                 ++start;

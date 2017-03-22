@@ -215,7 +215,7 @@ a:hover, a:active, a:focus {
 		        <td class="fragout-table-head">&nbsp;</td>
 		        <td><div align="right">
 		          <input name="save" type="submit" class="btn" id="save" value="保存" />
-		          <a name="reverse" href="reverse_Servlet?vid=<%=version.getVid() %>" class="btn" id="save2" ><input type="button" class="btn" value="溯源" /></a>
+		          <a name="reverse" href="timelineServlet?vid=<%=version.getVid() %>" class="btn" id="save2" ><input type="button" class="btn" value="溯源" /></a>
 		          <a name="back" href="version_Servlet?pid=<%=version.getPid() %>&fid=<%=version.getFid() %>" class="btn" id="save3" ><input type="button" class="btn" value="返回" /></a>
 		          </div></td>
 		        <td>&nbsp;</td>

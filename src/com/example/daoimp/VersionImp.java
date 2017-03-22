@@ -27,7 +27,7 @@ public class VersionImp {
 		return ok;
 	}
 	
-	public List<VersionLink> getLinks(int pid, int fid) {
+	public List<VersionLink> getLinks(String pid, int fid) {
 		List<VersionLink> result = null;
 		VersionDao dao = new VersionDao();
 		try {
@@ -39,7 +39,7 @@ public class VersionImp {
 		return result;
 	}
 	
-	public VersionLink showVersion(int vid){
+	public VersionLink showVersion(String vid){
 		VersionLink version = null;
 		VersionDao dao =new VersionDao();
 		try {

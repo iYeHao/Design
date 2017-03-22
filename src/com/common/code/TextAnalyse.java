@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class TextAnalyse {
 	public static double YUZHI = 0.2 ;
-	public  double getSimilarity(String doc1, String doc2) {
+	public static  double getSimilarity(String doc1, String doc2) {
 		if (doc1 != null && doc1.trim().length() > 0 && doc2 != null
 				&& doc2.trim().length() > 0) {
 
@@ -96,7 +96,7 @@ public class TextAnalyse {
 		}
 		return -1;
 	}
-	/*public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception{
 		String doc1="可以刻意刻意可以";
 		String doc2="可以刻意";
 		String f1=doc1.replaceAll("[\\pP‘’“”]", "");
@@ -113,8 +113,8 @@ public class TextAnalyse {
 		System.out.println("分词后的相似度："+d);
 		double d2=getSimilarity(f1, f2);
 		System.out.println("未分词的相似度："+d2);
-	}*/
-	private static double getSimilarity2(List<String> str1, List<String> str2) throws Exception {
+	}
+	public static double getSimilarity2(List<String> str1, List<String> str2) throws Exception {
 		// TODO Auto-generated method stub
 		int size = 0 , size2 = 0 ;
 	    if ( str1 != null && ( size = str1.size() ) > 0 && str2 != null && ( size2 = str2.size() ) > 0 ) {

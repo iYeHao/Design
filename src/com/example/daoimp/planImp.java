@@ -8,19 +8,19 @@ import com.example.dao.planDao;
 import com.example.demo.Plan;
 
 public class planImp {
-public ArrayList<Plan> show(){
-	ArrayList<Plan> plist =new ArrayList<Plan>();
-	planDao dao =new planDao();
-	try {
-		plist=dao.show();
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}finally{
-		dao.Close();
+	public ArrayList<Plan> show(String searchStr){
+		ArrayList<Plan> plist =new ArrayList<Plan>();
+		planDao dao =new planDao();
+		try {
+			plist=dao.show(searchStr);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dao.Close();
+		}
+		return plist;
 	}
-	return plist;
-}
 public ArrayList<Plan> ShowDetail(String userid){
 	ArrayList<Plan> planlist =new ArrayList<Plan>();
 	planDao dao =new planDao();
@@ -39,6 +39,19 @@ public Plan PlanCheck(String pid){
 	planDao dao = new planDao();
 	try {
 		plan=dao.PlanCheck(pid);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally{
+		dao.Close();
+	}
+	return plan;
+}
+public Plan showPlan(String pid){
+	Plan plan = null;
+	planDao dao =new planDao();
+	try {
+		plan =dao.PlanShow(pid);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

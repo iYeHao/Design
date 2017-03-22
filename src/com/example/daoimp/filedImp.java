@@ -23,6 +23,21 @@ public class filedImp {
 		return flist;
 		
 	}
+	public ArrayList<Field> Dshow(){
+		ArrayList<Field> flist =new ArrayList<Field>();
+		filedDao dao = new filedDao();
+		
+		try {
+			flist=dao.Dshow();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dao.Close();
+		}
+		return flist;
+		
+	}
 	public Field filedcheck(String fid){
 		Field f =new Field();
 		filedDao dao =new filedDao();

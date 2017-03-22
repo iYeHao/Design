@@ -45,10 +45,16 @@ public class acount5_Servlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		int page_current=1;
+		request.setAttribute("page_current", page_current);
 		filedImp imp =new filedImp();
 		ArrayList<Field> flist = new ArrayList<Field> ();
-		flist=imp.show();
-		request.setAttribute("flist", flist);
+		flist=imp.Dshow();
+		ArrayList<Field> cflist=new ArrayList<Field>();
+		cflist.add(flist.get(0));
+		cflist.add(flist.get(1));
+		cflist.add(flist.get(2));
+		request.setAttribute("flist", cflist);
 		request.getRequestDispatcher("/account5.jsp").forward(request, response);
 	
 	}

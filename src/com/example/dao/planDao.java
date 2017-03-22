@@ -16,20 +16,32 @@ public class planDao extends baseDao {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public ArrayList<Plan>show() throws SQLException{
+	public ArrayList<Plan> show(String searchStr) throws SQLException{
 		ArrayList<Plan> plist = new ArrayList<Plan>();
-		String sql="select * from plan";
-		Plan plan= new Plan();
+		String sql="select t.pid, t.userid, t.ptype, t.pname, t.pdate, u.uname from plan t left join users u on t.userid = u.userid where t.pname like ?" +
+				" or t.ptype like ? or u.uname like ? order by t.pdate desc";
+		String sql2 = "select t.pid, t.userid, t.ptype, t.pname, t.pdate, u.uname from plan t left join users u on t.userid = u.userid order by t.pdate desc";
 		this.ConnetOrcl();
-		PreparedStatement ps = this.conn.prepareStatement(sql);
+		PreparedStatement ps = null;
+		if(searchStr == null || searchStr.equals("")) {
+			ps = this.conn.prepareStatement(sql2);
+		} else {
+			ps = this.conn.prepareStatement(sql);
+			String str = "%" + searchStr + "%";
+			ps.setObject(1, str);
+			ps.setObject(2, str);
+			ps.setObject(3, str);
+		}
 		ResultSet rs =ps.executeQuery();
 		while(rs.next())
 		{
+			Plan plan= new Plan();
 			plan.setPid(rs.getString(1));
-			plan.setPname(rs.getString(4));
-			plan.setPtype(rs.getString(3));
-			plan.setPdate(rs.getDate(5));
 			plan.setUserid(rs.getString(2));
+			plan.setPtype(rs.getString(3));
+			plan.setPname(rs.getString(4));
+			plan.setPdate(rs.getDate(5));
+			plan.setUsername(rs.getString(6));
 			plist.add(plan);
 		}
 		return plist;
@@ -52,6 +64,22 @@ public class planDao extends baseDao {
 			planlist.add(plan);
 		}
 		return planlist;
+	}
+	public Plan PlanShow(String pid) throws SQLException{
+		String sql="select t.pid,t.pname,t.pdate,u.uname from plan t left join USERS u on t.userid=u.userid where pid=?";
+		Plan plan= new Plan();
+		this.ConnetOrcl();
+		PreparedStatement ps = this.conn.prepareStatement(sql);
+		ps.setObject(1, pid);
+		ResultSet rs =ps.executeQuery();
+		if(rs.next())
+		{
+			plan.setPid(rs.getString(1));
+			plan.setPname(rs.getString(2));
+			plan.setPdate(rs.getDate(3));
+			plan.setUsername(rs.getString(4));
+		}
+		return plan;
 	}
 	public Plan PlanCheck(String pid) throws SQLException{
 		Plan plan =new Plan();

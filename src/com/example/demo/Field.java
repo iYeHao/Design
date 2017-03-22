@@ -13,6 +13,13 @@ public class Field {
 	private Date fdate;
 	private String author;
 	private String planname;
+	private double similar;
+	private double similar2;
+	private int level;
+	public void setSimilar(double similar){this.similar=similar;}
+	public double getSimilar(){return similar;}
+	public void setSimilar2(double similar2){this.similar2=similar2;}
+	public double getSimilar2(){return similar2;}
 	public void setContribution(double contribution){this.contribution=contribution;}
 	public double getContribution(){return contribution;}
 	public void setPlanname(String planname){
@@ -76,6 +83,13 @@ public class Field {
 	public Date getFdate()
 	{
 		return fdate;
+	}
+	public void setLevel(int level) {
+		// TODO Auto-generated method stub
+		this.level=level;
+	}
+	public int getLevel(){
+		return level;
 	}
 
 }

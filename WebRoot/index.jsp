@@ -137,7 +137,7 @@ a:hover, a:active, a:focus {
             </tr>
             <tr>
               <td>&nbsp;</td>
-              <td class="header"><div align="center"><a href="list.html" target="_blank">查看&amp;修改预案</a></div></td>
+              <td class="header"><div align="center"><a href="planlist_Servlet" target="_blank">查看&amp;修改预案</a></div></td>
               <td>&nbsp;</td>
             </tr>
             <tr>

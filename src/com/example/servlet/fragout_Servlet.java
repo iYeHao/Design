@@ -19,6 +19,11 @@ import com.example.demo.VersionLink;
 public class fragout_Servlet extends HttpServlet {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Constructor of the object.
 	 */
 	public fragout_Servlet() {
@@ -46,7 +51,7 @@ public class fragout_Servlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		int vid = Integer.parseInt(request.getParameter("vid"));
+		String vid = request.getParameter("vid");
 		VersionImp vimp = new VersionImp();
 		planImp pimp = new planImp();
 		FieldBaseImp fimp = new FieldBaseImp();
@@ -73,8 +78,8 @@ public class fragout_Servlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int vid = Integer.parseInt(request.getParameter("vid"));
-		int userid=(Integer) request.getSession().getAttribute("userid");
+		String vid = request.getParameter("vid");
+		String userid=(String) request.getSession().getAttribute("userid");
 		String vcomment = new String(request.getParameter("vcomment").getBytes("8859_1"),"utf-8");
 		String vtext = new String(request.getParameter("vtext").getBytes("8859_1"),"utf-8");
 		VersionImp vimp = new VersionImp();

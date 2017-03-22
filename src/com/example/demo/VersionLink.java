@@ -3,14 +3,14 @@ package com.example.demo;
 import java.sql.Date;
 
 public class VersionLink {
-	private int vid;
+	private String vid;
 	private int fid;
-	private int pid;
+	private String pid;
 	private Date createtime;
-	private int userid;
+	private String userid;
 	private String username;
 	private String vcomment;
-	private int vparent;
+	private String vparent;
 	private String vtext;
 	
 	public String getUsername() {
@@ -25,10 +25,10 @@ public class VersionLink {
 	public void setVcomment(String vcomment) {
 		this.vcomment = vcomment;
 	}
-	public int getVid() {
+	public String getVid() {
 		return vid;
 	}
-	public void setVid(int vid) {
+	public void setVid(String vid) {
 		this.vid = vid;
 	}
 	public int getFid() {
@@ -37,10 +37,10 @@ public class VersionLink {
 	public void setFid(int fid) {
 		this.fid = fid;
 	}
-	public int getPid() {
+	public String getPid() {
 		return pid;
 	}
-	public void setPid(int pid) {
+	public void setPid(String pid) {
 		this.pid = pid;
 	}
 	public Date getCreatetime() {
@@ -49,16 +49,16 @@ public class VersionLink {
 	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
 	}
-	public int getUserid() {
+	public String getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public int getVparent() {
+	public String getVparent() {
 		return vparent;
 	}
-	public void setVparent(int vparent) {
+	public void setVparent(String vparent) {
 		this.vparent = vparent;
 	}
 	public String getVtext() {

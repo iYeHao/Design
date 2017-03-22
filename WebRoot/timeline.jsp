@@ -48,10 +48,13 @@ h2.top_title span{font-size:12px; color:#666;font-weight:500}
 		<div class="cd-timeline-content">
 			<h2><c:out value="${f.fname}"></c:out></h2>
 			<p><c:out value="${f.ftext }"></c:out></p>
-			<a href="" class="cd-read-more" target="_blank">阅读全文</a>
+			<a href="fragout_Servlet?vid=${f.fid}" class="cd-read-more" target="_blank">返回修改</a>
 			<span class="cd-date"><p>Time:<c:out value="${f.fdate}"></c:out></p>
 			<p>Author:<c:out value="${f.author}"></c:out></p>
+			<p>作者信誉度:<c:out value="${f.level}"></c:out></p>
 			<p>contribution:<c:out value="${f.contribution}"></c:out></p>
+			<p>字相似度:<c:out value="${f.similar}"></c:out></p>
+			<p>词相似度:<c:out value="${f.similar2}"></c:out></p>
 			</span>
 			
 		</div>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import oracle.jdbc.OraclePreparedStatement;
 import com.example.demo.Field;
 
 public class filedDao extends baseDao{
@@ -36,6 +37,24 @@ public class filedDao extends baseDao{
 			{
 			}
 			filed.setFtext(rs.getString(5).substring(0,end));
+			filed.setUserid(rs.getString(3));
+			filed.setFdate(rs.getDate(7));
+			flist.add(filed);
+		}
+		return flist;
+	}
+public ArrayList<Field> Dshow() throws SQLException{
+		
+		ArrayList<Field> flist= new ArrayList<Field>();
+		String sql="select * from filed ";
+		this.ConnetOrcl();
+		PreparedStatement ps =this.conn.prepareStatement(sql);
+		ResultSet rs =ps.executeQuery();
+		while(rs.next()){
+			Field filed =new Field();
+			filed.setFid(rs.getString(1));
+			filed.setFname(rs.getString(4));
+			filed.setFtext(rs.getString(5));
 			filed.setUserid(rs.getString(3));
 			filed.setFdate(rs.getDate(7));
 			flist.add(filed);
@@ -92,23 +111,36 @@ public class filedDao extends baseDao{
 	 */
 	public Field addfiled(String ftext,String fname,String userid,String pid,Date date) throws SQLException{
 		Field f=new Field();
-		String sql="insert into filed (ftext,fname,userid,pid,fdate,fatherid,fid) values(?,?,?,?,?,?,?)";
-		this.ConnetOrcl();
 		String fid=UUID.randomUUID().toString();
-		int fatherid=0;
-		java.sql.PreparedStatement ps=this.conn.prepareStatement(sql);
+		String sql="insert into filed (ftext,fname,userid,pid,fdate,fatherid,fid) values(?,?,?,?,?,?,?)";
+		
+		String sql2 = "insert into version (fid, pid, createtime, userid, vtext, vparent,vid) select fid, ?, ?, ?, ?,?,?  from field_base where fname = ?";
+		//String sql2 = "insert into version (fid, pid, createtime, userid, vtext, vparent,vid)values(1,?,?,?,?,?,?)";
+		this.ConnetOrcl();
+		String fatherid=null;
+		OraclePreparedStatement ps=(OraclePreparedStatement)this.conn.prepareStatement(sql);
 		ps.setString(1, ftext);
 		ps.setString(2, fname);
 		ps.setString(3, userid);
 		ps.setString(4, pid);
 		ps.setDate(5, date);
-		ps.setInt(6, fatherid);
+		ps.setString(6, fatherid);
 		ps.setString(7, fid);
-		ps.execute();
+		ps.executeQuery();
 		f.setFid(fid);
 		f.setFtext(ftext);
+		PreparedStatement ps2 = this.conn.prepareStatement(sql2);
+		ps2.setString(1, pid);
+		ps2.setDate(2, date);
+		ps2.setString(3, userid);
+		ps2.setString(4, ftext);
+		ps2.setString(5, fatherid);
+		ps2.setString(6, fid);
+		ps2.setString(7,fname);
+		ps2.executeUpdate();
 		return f;
 	}
+
 	/*
 	 * 查找field的作者
 	 */
@@ -150,8 +182,27 @@ public class filedDao extends baseDao{
 			f.setFdate(rs.getDate(7));
 		}
 		f.setAuthor(this.findAuthor(f.getUserid()));
+		f.setLevel(this.findlevel(f.getUserid()));
 		flist.add(f);
 		return trackback(f.getFatherid());
+	}
+	public  int findlevel(String userid){
+		int level=0;
+		String sql="select *from users where userid=?";
+		this.ConnetOrcl();
+		try {
+			java.sql.PreparedStatement ps =this.conn.prepareStatement(sql);
+			ps.setString(1, userid);
+			java.sql.ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				level=rs.getInt(6);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return level;
+		
 	}
 
 }

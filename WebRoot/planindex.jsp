@@ -169,18 +169,18 @@ ul.nav a { zoom: 1; }  /* 缩放属性将为 IE 提供其需要的 hasLayout 触
     <ul class="nav">
       <li> <a href="planindex.jsp">&nbsp;预案信息</a></li>
       <li><a href="newplan.jsp">总则</a></li>
-      <li><a href="newplan2.html">灾害事件划分</a></li>
-      <li><a href="newplan3.html">灾害事件应急管理    </a><!-- end .sidebar1 --></li>
-      <li><a href="newplan4.html">组织体系及职责</a></li>
-      <li><a href="newplan5.html">应急响应机制</a></li>
-      <li><a href="newplan6.html">特别重大灾害应急响应</a></li>
-      <li><a href="newplan7.html">重大灾害事件应急响应</a></li>
-      <li><a href="newplan8.html">较大灾害事件应急响应</a></li>
-      <li><a href="newplan9.html">一般灾害事件应急响应</a></li>
-      <li><a href="newplan10.html">其他灾害事件应急响应</a></li>
-      <li><a href="newplan11.html">灾害应急准备</a></li>
-      <li><a href="newplan12.html">灾害应急保障</a></li>
-      <li><a href="newplan13.html">其他</a></li>
+      <li><a href="newplan2.jsp">灾害事件划分</a></li>
+      <li><a href="newplan3.jsp">灾害事件应急管理    </a><!-- end .sidebar1 --></li>
+      <li><a href="newplan4.jsp">组织体系及职责</a></li>
+      <li><a href="newplan5.jsp">应急响应机制</a></li>
+      <li><a href="newplan6.jsp">特别重大灾害应急响应</a></li>
+      <li><a href="newplan7.jsp">重大灾害事件应急响应</a></li>
+      <li><a href="newplan8.jsp">较大灾害事件应急响应</a></li>
+      <li><a href="newplan9.jsp">一般灾害事件应急响应</a></li>
+      <li><a href="newplan10.jsp">其他灾害事件应急响应</a></li>
+      <li><a href="newplan11.jsp">灾害应急准备</a></li>
+      <li><a href="newplan12.jsp">灾害应急保障</a></li>
+      <li><a href="newplan13.jsp">其他</a></li>
     </ul>
   </div>
   <div class="content" align="center"><!-- InstanceBeginEditable name="EditRegion3" -->
