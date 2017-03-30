@@ -181,6 +181,7 @@ ul.nav a { zoom: 1; }  /* 缩放属性将为 IE 提供其需要的 hasLayout 触
 		<hr />
   </div><!-- end .sidebar1 -->
   <div class="content"><!-- InstanceBeginEditable name="EditRegion3" -->
+  <h3>修改的字段如下：</h3>
                 <fieldset style="width:80%; float:left;">
                   <c:forEach  var="f" items="${flist}" >
                   <p>&nbsp;</p>

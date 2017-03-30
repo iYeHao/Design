@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.example.demo.User;
 import com.example.demo.Version;
 import com.example.demo.VersionLink;
 
@@ -18,7 +19,6 @@ public class VersionDao extends baseDao {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	public void add(Version version) throws SQLException {
 		String vid=UUID.randomUUID().toString();
 		String sql="insert into version (pid,fid,createtime,userid,vtext,vparent,vcomment,vid) values(?,?,?,?,?,?,?,?) ";
@@ -34,7 +34,6 @@ public class VersionDao extends baseDao {
 		ps.setString(7, version.getVcomment());
 		ps.setString(8, vid);
         ps.executeUpdate();
-        
 		PreparedStatement ps2 =this.conn.prepareStatement(sql2);
 		ps2.setString(1, version.getPid());
 		ps2.setString(2, version.getUserid());

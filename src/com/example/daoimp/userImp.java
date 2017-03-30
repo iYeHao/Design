@@ -7,6 +7,18 @@ import com.example.dao.UserDao;
 import com.example.demo.User;
 
 public class userImp {
+	public void reviselevel(double level,String userid ){
+		UserDao dao=new UserDao();
+		try {
+			dao.reviselevel(level,userid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dao.Close(); 
+		}
+			
+	}
 	
 	public ArrayList<User> Show(){
 		ArrayList<User>  ulist =new ArrayList<User> ();

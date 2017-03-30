@@ -142,10 +142,10 @@ a:hover, a:active, a:focus {
                   <input name="username" type="text" id="name" value="${form.uname }"/>${form.errors.uname}
                 </p>
                 <p><em>*</em>性&nbsp;&nbsp;&nbsp;别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="usersex" id="boy" value="男" />
+                  <input type="radio" name="usersex" id="boy" value="male" />
                   <label for="boy">男</label>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="usersex" id="girl" value="女" />
+                  <input type="radio" name="usersex" id="girl" value="Female" />
                   <label for="girl">女</label>
                 </p>
                 <p>
@@ -156,14 +156,10 @@ a:hover, a:active, a:focus {
                   <label for="email"></label>
                   <input name="useremail" type="text" id="email"value="${form.uemail}"/>${form.errors.uemail}
                 </p>
-                <p> <em>*</em>等&nbsp;&nbsp;&nbsp;级：              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <label for="zw"></label>
-                  <input name="userlevel" type="text" id="zw" value="${form.ulevel}"/>${form.errors.ulevel}
-                </p>
                 <p><em>*</em> 密&nbsp;&nbsp;&nbsp;码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <label for="ps"></label>
   &nbsp;
-  <input name="userpassword" type="password" id="ps" value="${form.upassword}"/>
+  <input name="userpassword" type="password" id="ps" value="${form.upassword}"/>${form.errors.upassword}
 
                 </p>
                 <p><em>*</em>确定密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

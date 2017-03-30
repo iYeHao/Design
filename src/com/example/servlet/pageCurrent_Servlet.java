@@ -47,6 +47,8 @@ public class pageCurrent_Servlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		javax.servlet.http.HttpSession session1=request.getSession();
+		String userid=(String) session1.getAttribute("userid");
 		String current=request.getParameter("page_current");
 		int page_current=Integer.parseInt(current);//定义当前页                
 		int page_next=Integer.parseInt(request.getParameter("page_next"));//定义下一页
@@ -67,7 +69,8 @@ public class pageCurrent_Servlet extends HttpServlet {
 		int page_total=0;//定义页的总数
 		filedImp imp =new filedImp();
 		ArrayList<Field> flist = new ArrayList<Field> ();
-		flist=imp.Dshow();
+		flist=imp.Dshow(userid);
+		
 		page_total=flist.size()/3+1;
 		ArrayList<Field> cflist=new ArrayList<Field>();
 		

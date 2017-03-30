@@ -58,13 +58,6 @@ public class RegisterServlet extends HttpServlet {
 			 uage =0;
 		}
 		String uemail = request.getParameter("useremail");
-		int ulevel;
-		if(request.getParameter("userlevel")!=null){
-		 ulevel =Integer.parseInt(request.getParameter("userlevel")) ;
-		}else
-		{
-			 ulevel=0;
-		}
 		String usex =request.getParameter("usersex");
 		String cpassword=request.getParameter("cuserpassword");
 		boolean b=imp.find(uname);
@@ -87,6 +80,7 @@ public class RegisterServlet extends HttpServlet {
 			request.getRequestDispatcher("/register.jsp").forward(request, response);
 			return ;
 		}
+		int ulevel=0;
 		User user=imp.register(uemail, uname, upassword, uage, ulevel, usex);
 		PrintWriter out=response.getWriter();
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
@@ -96,7 +90,7 @@ public class RegisterServlet extends HttpServlet {
 			 out.print("<script language='javascript' >alert('Sucessfully signed up! Please login in!');window.location.href='login.jsp';</script>");
 	    	//	request.getRequestDispatcher("/login.jsp").forward(request, response);	
 	    	}else{
-	    		request.getRequestDispatcher("/register.jsp").forward(request, response);
+	    		request.getRequestDispatcher("/error.jsp").forward(request, response);
 	    	}
 	    	
 } 

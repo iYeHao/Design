@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 		String userpassword=request.getParameter("upassword");
 		User b=imp.Login(username,userpassword);
 		PrintWriter out=response.getWriter();
-		if(b!=null){
+		if(b!=null&&b.getUserid()!=null){
 			response.setHeader("Content-type", "text/html;charset=UTF-8");
     		response.setCharacterEncoding("UTF-8");
 			javax.servlet.http.HttpSession session1=request.getSession();

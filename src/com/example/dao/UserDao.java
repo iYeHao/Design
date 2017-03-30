@@ -60,7 +60,7 @@ public class UserDao extends baseDao{
 		ps.setObject(1, userid);
 		java.sql.ResultSet rs =ps.executeQuery();
 		rs.deleteRow();
-	}
+	}                                                                                                            
 	public User Login(String username, String userpassword) throws SQLException {
 		// TODO Auto-generated method stub
 		User user=new User();
@@ -153,5 +153,30 @@ public class UserDao extends baseDao{
 		ps.setString(2, userid);
 		ps.executeUpdate();
 	}
-
+	public void reviselevel(double level ,String userid) throws SQLException {
+		// TODO Auto-generated method stub
+		double plevel=0;
+		String sql="select * from users where userid=?";
+		this.ConnetOrcl();
+		java.sql.PreparedStatement ps=this.conn.prepareStatement(sql);
+		ps.setString(1, userid);
+		java.sql.ResultSet rs =ps.executeQuery();
+		while(rs.next()){
+			plevel=rs.getDouble(6);
+		}
+		if(plevel==0){
+		String sql2="update users set ulevel=? where userid=?";
+		java.sql.PreparedStatement ps2=this.conn.prepareStatement(sql2);
+		ps2.setDouble(1,  level);
+		ps2.setString(2, userid);
+		ps2.executeQuery();
+		
+		}else{
+			String sql3="update users set ulevel=? where userid=?";
+			java.sql.PreparedStatement ps3=this.conn.prepareStatement(sql3);
+			ps3.setDouble(1,(level+plevel)*0.5);
+			ps3.setString(2,userid);
+			ps3.executeQuery();
+		}
+	}
 }

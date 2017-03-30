@@ -43,12 +43,13 @@ public class filedDao extends baseDao{
 		}
 		return flist;
 	}
-public ArrayList<Field> Dshow() throws SQLException{
+public ArrayList<Field> Dshow(String userid) throws SQLException{
 		
 		ArrayList<Field> flist= new ArrayList<Field>();
-		String sql="select * from filed ";
+		String sql="select * from filed where userid=?";
 		this.ConnetOrcl();
 		PreparedStatement ps =this.conn.prepareStatement(sql);
+		ps.setString(1, userid);
 		ResultSet rs =ps.executeQuery();
 		while(rs.next()){
 			Field filed =new Field();
@@ -202,6 +203,25 @@ public ArrayList<Field> Dshow() throws SQLException{
 			e.printStackTrace();
 		}
 		return level;
+		
+	}
+	public String finduserid(String fid){
+		String userid=null;
+		String sql="select*from filed where fid=?";
+		this.ConnetOrcl();
+		try {
+			java.sql.PreparedStatement ps=this.conn.prepareStatement(sql);
+			ps.setString(1, fid);
+			java.sql.ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				userid=rs.getString(3);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return userid;
 		
 	}
 

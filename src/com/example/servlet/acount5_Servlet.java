@@ -45,15 +45,19 @@ public class acount5_Servlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		javax.servlet.http.HttpSession session1=request.getSession();
+		String userid=(String) session1.getAttribute("userid");
 		int page_current=1;
 		request.setAttribute("page_current", page_current);
 		filedImp imp =new filedImp();
 		ArrayList<Field> flist = new ArrayList<Field> ();
-		flist=imp.Dshow();
+		flist=imp.Dshow(userid);
 		ArrayList<Field> cflist=new ArrayList<Field>();
-		cflist.add(flist.get(0));
-		cflist.add(flist.get(1));
-		cflist.add(flist.get(2));
+		if(flist.size()!=0){
+		for(int i=0;i<flist.size();i++){
+			cflist.add(flist.get(i));
+		}
+	}
 		request.setAttribute("flist", cflist);
 		request.getRequestDispatcher("/account5.jsp").forward(request, response);
 	

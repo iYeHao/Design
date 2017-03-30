@@ -194,10 +194,10 @@ ul.nav a { zoom: 1; }  /* 缩放属性将为 IE 提供其需要的 hasLayout 触
                 <input name="uname" type="text" id="name" value="${user.uname}" />
               </p>
               <p>性&nbsp;&nbsp;&nbsp;别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="usex" id="boy" value="boy" />
+                  <input type="radio" name="usex" id="boy" value="male" />
                   <label for="boy">男</label>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="usex" id="girl" value="girl" />
+                  <input type="radio" name="usex" id="girl" value="female" />
                   <label for="girl">女</label>
                 </p>
               <p>

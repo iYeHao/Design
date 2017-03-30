@@ -23,12 +23,12 @@ public class filedImp {
 		return flist;
 		
 	}
-	public ArrayList<Field> Dshow(){
+	public ArrayList<Field> Dshow(String userid){
 		ArrayList<Field> flist =new ArrayList<Field>();
 		filedDao dao = new filedDao();
 		
 		try {
-			flist=dao.Dshow();
+			flist=dao.Dshow(userid);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

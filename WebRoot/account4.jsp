@@ -180,6 +180,7 @@ ul.nav a { zoom: 1; }  /* 缩放属性将为 IE 提供其需要的 hasLayout 触
 		<hr />
   </div><!-- end .sidebar1 -->
  <div class="content"><!-- InstanceBeginEditable name="EditRegion3" -->
+ <h3>我发布的预案如下：</h3>
     <p>&nbsp;</p>
     <ul class="comment-list">
     <c:forEach items="${plist }" var="p">
