@@ -23,7 +23,22 @@ public class filedImp {
 		return flist;
 		
 	}
-	public Field filedcheck(int fid){
+	public ArrayList<Field> Dshow(String userid){
+		ArrayList<Field> flist =new ArrayList<Field>();
+		filedDao dao = new filedDao();
+		
+		try {
+			flist=dao.Dshow(userid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dao.Close();
+		}
+		return flist;
+		
+	}
+	public Field filedcheck(String fid){
 		Field f =new Field();
 		filedDao dao =new filedDao();
 		try {
@@ -36,7 +51,7 @@ public class filedImp {
 		}
 		return f;
 	}
-	public void deletefiled(int fid){
+	public void deletefiled(String fid){
 		filedDao dao =new filedDao();
 		try {
 			dao.deletefiled(fid);
@@ -47,7 +62,7 @@ public class filedImp {
 			dao.Close();
 		}
 	}
-	public Field addfiled(String ftext,String fname,int userid,int pid,Date date){
+	public Field addfiled(String ftext,String fname,String userid,String pid,Date date){
 		Field file =new Field();
 		filedDao dao=new filedDao();
 		try {
@@ -59,5 +74,19 @@ public class filedImp {
 			dao.Close();
 		}
 		return file;
+	}
+	public ArrayList<Field> trackback(String fid) {
+		// TODO Auto-generated method stub
+		ArrayList<Field> flist = new ArrayList<Field>();
+		filedDao dao=new filedDao();
+		try {
+			flist=dao.trackback(fid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dao.Close();
+		}
+		return  flist;
 	}
 }

@@ -1,19 +1,19 @@
 package com.example.demo;
 
 public class User {
-	private int userid;
+	private String userid;
 	private String uemail;
 	private String uname;
 	private String upassword;
 	private int uage;
-	private int ulevel;
+	private double ulevel;
 	private String usex;
 	private String uposition;
 	private String urealname;
-	public void setUserid(int userid){
+	public void setUserid(String userid){
 		this.userid=userid;
 	}
-	public int getUserid(){
+	public String getUserid(){
 		return userid;
 	}
 	public void setUemail(String uemail){
@@ -40,10 +40,10 @@ public class User {
 	public int getUage(){
 		return uage;
 	}
-	public void setUlevel(int ulevel){
+	public void setUlevel(double ulevel){
 		this.ulevel=ulevel;
 	}
-	public int getUlevel(){
+	public double getUlevel(){
 		return ulevel;
 	}
 	public void setUsex(String usex){

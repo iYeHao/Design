@@ -49,9 +49,8 @@ public class newplan2_Servlet extends HttpServlet {
 
 		String ftext=new String(request.getParameter("td").getBytes("8859_1"),"utf-8");
 		String fname="特别重大灾害事件";
-		int userid=(Integer) request.getSession().getAttribute("userid");
-		Object ppid=request.getSession().getAttribute("pid");
-		int pid=(Integer)ppid;
+		String userid=(String) request.getSession().getAttribute("userid");
+		String pid=(String) request.getSession().getAttribute("pid");
 		java.util.Date d =(java.util.Date) request.getSession().getAttribute("date");
 		Date date=new Date(d.getTime());
 		filedImp imp=new filedImp();

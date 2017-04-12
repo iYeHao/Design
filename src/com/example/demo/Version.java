@@ -1,22 +1,21 @@
 package com.example.demo;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 
 public class Version {
-		private int vid;
+		private String vid;
 		private int fid;
-		private int pid;
-		private Timestamp createtime;
-		private int userid;
+		private String pid;
+		private Date createtime;
+		private String userid;
 		private String vtext;
-		private int vparent;
+		private String vparent;
 		private String vcomment;
-		private int vcount;
-		public int getVid() {
+		public String getVid() {
 			return vid;
 		}
-		public void setVid(int vid) {
+		public void setVid(String vid) {
 			this.vid = vid;
 		}
 		public int getFid() {
@@ -25,22 +24,22 @@ public class Version {
 		public void setFid(int fid) {
 			this.fid = fid;
 		}
-		public int getPid() {
+		public String getPid() {
 			return pid;
 		}
-		public void setPid(int pid) {
+		public void setPid(String pid) {
 			this.pid = pid;
 		}
-		public Timestamp getCreatetime() {
+		public Date getCreatetime() {
 			return createtime;
 		}
-		public void setCreatetime(Timestamp createtime) {
+		public void setCreatetime(Date createtime) {
 			this.createtime = createtime;
 		}
-		public int getUserid() {
+		public String getUserid() {
 			return userid;
 		}
-		public void setUserid(int userid) {
+		public void setUserid(String userid) {
 			this.userid = userid;
 		}
 		public String getVtext() {
@@ -49,10 +48,10 @@ public class Version {
 		public void setVtext(String vtext) {
 			this.vtext = vtext;
 		}
-		public int getVparent() {
+		public String getVparent() {
 			return vparent;
 		}
-		public void setVparent(int vparent) {
+		public void setVparent(String vparent) {
 			this.vparent = vparent;
 		}
 		public String getVcomment() {
@@ -60,11 +59,5 @@ public class Version {
 		}
 		public void setVcomment(String vcomment) {
 			this.vcomment = vcomment;
-		}
-		public int getVcount() {
-			return vcount;
-		}
-		public void setVcount(int vcount) {
-			this.vcount = vcount;
 		}
 }

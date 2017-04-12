@@ -16,6 +16,11 @@ import com.example.demo.Plan;
 public class fragindex_Servlet extends HttpServlet {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Constructor of the object.
 	 */
 	public fragindex_Servlet() {
@@ -42,7 +47,7 @@ public class fragindex_Servlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int pid= Integer.parseInt((String)request.getParameter("pid"));
+		String pid= (String)request.getParameter("pid");
 		planImp imp = new planImp();
 		FieldBaseImp fimp = new FieldBaseImp();
 		Plan plan = imp.showPlan(pid);

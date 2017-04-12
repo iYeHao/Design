@@ -10,6 +10,11 @@ import com.example.demo.FieldBase;
 
 public class FieldBaseDao extends baseDao {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public List<FieldBase> getAllFields() throws SQLException {
 		List<FieldBase> fields= new ArrayList<FieldBase>();
 		String sql="select * from field_base order by fid";

@@ -187,7 +187,7 @@ var setDepth = function(link, depth) {
 }
 for(var i = 0; i < links.length; i++) {
 	linkMap[links[i]["vid"]] = links[i];
-	if(links[i]["vparent"] == 0) {
+	if(links[i]["vparent"] == null) {
 		grandParent = links[i];
 	}
 	links[i].children = [];

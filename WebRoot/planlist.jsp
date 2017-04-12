@@ -177,11 +177,7 @@ a:hover, a:active, a:focus { /* 此组选择器将为键盘导航者提供与鼠
 					  <div class="gonglue_info fn-left">
 					    <h3> <a target="_blank" href="fragindex_Servlet?pid=<%=plan.getPid() %>"  title="【2013年7月1日-2013年7月5日】苏州行"><%=plan.getPname() %></a></h3>
 						<p>&nbsp;&nbsp;类型：<%=plan.getPtype() %>						</p>
-						<p>
-							&nbsp;&nbsp;发布者: <a target="_blank" href="account1_Servlet"><%=plan.getUsername() %></a>
-							&nbsp;&nbsp;&nbsp;&nbsp;发布时间：<%=plan.getPdate() %>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="fragtotal_Servlet?pid=<%=plan.getPid() %>">查看详情 </a>
-						</p>	
+						<p>&nbsp;&nbsp;发布者: <a target="_blank" href="account1_Servlet"><%=plan.getUsername() %></a>&nbsp;&nbsp;&nbsp;&nbsp;发布时间：<%=plan.getPdate() %></p>	
 					  </div>
 					</li>
 					<%
