@@ -50,7 +50,7 @@ public class plantotal_Servlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		int pid= Integer.parseInt((String)request.getParameter("pid"));
+		String pid= (String)request.getParameter("pid");
 		planImp imp = new planImp();
 		PlanDetail planDetail = imp.getPlanDetail(pid);
 		request.setAttribute("planDetail", planDetail);

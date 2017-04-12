@@ -60,16 +60,16 @@ public class planclone_Servlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		int pid= Integer.parseInt((String)request.getParameter("pid"));
-		int userid=(Integer) request.getSession().getAttribute("userid");
+		String pid= (String)request.getParameter("pid");
+		String userid= (String) request.getSession().getAttribute("userid");
 		String vidStr = (String)request.getParameter("vids");
 		String[] vidStrArray = vidStr.split(",");
-		List<Integer> vids = new ArrayList();
+		List<String> vids = new ArrayList();
 		for(int i = 0; i < vidStrArray.length; i++) {
-			vids.add(Integer.parseInt(vidStrArray[i]));
+			vids.add((vidStrArray[i]));
 		}
 		VersionImp imp = new VersionImp();
-		int vcount = imp.versionClone(vids);
+		imp.versionClone(vids);
 		response.sendRedirect("fragtotal_Servlet?pid=" + pid);
 	}
 

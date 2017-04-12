@@ -1,13 +1,14 @@
 package com.example.demo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 
 public class Version {
 		private String vid;
 		private int fid;
 		private String pid;
-		private Date createtime;
+		private Timestamp createtime;
 		private String userid;
 		private String vtext;
 		private String vparent;
@@ -30,10 +31,10 @@ public class Version {
 		public void setPid(String pid) {
 			this.pid = pid;
 		}
-		public Date getCreatetime() {
+		public Timestamp getCreatetime() {
 			return createtime;
 		}
-		public void setCreatetime(Date createtime) {
+		public void setCreatetime(Timestamp createtime) {
 			this.createtime = createtime;
 		}
 		public String getUserid() {

@@ -52,5 +52,21 @@ public class VersionImp {
 		}
 		return version;
 	}
+	public void versionClone(List<String> vids) {
+		VersionDao dao =new VersionDao();
+		try {
+			dao.versionClone(vids);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dao.Close();
+		}
+	}
+	public int versionClone1(int parseInt) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

@@ -6,6 +6,7 @@ import java.sql.Date;
 
 import com.example.dao.planDao;
 import com.example.demo.Plan;
+import com.example.demo.PlanDetail;
 
 public class planImp {
 	public ArrayList<Plan> show(String searchStr){
@@ -74,4 +75,45 @@ public String addplan(String pname, String ptype, Date d, String userid) {
 	}
 	return pid;
 }
+public PlanDetail getPlanDetail(String pid) {
+	PlanDetail detail = null;
+	planDao dao =new planDao();
+	try {
+		detail = dao.getPlanDetail(pid);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally{
+		dao.Close();
+	}
+	return detail;
+}
+
+public PlanDetail getBestPlanDetail(String pid) {
+	PlanDetail detail = null;
+	planDao dao =new planDao();
+	try {
+		detail = dao.getBestPlanDetail(pid);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally{
+		dao.Close();
+	}
+	return detail;
+}
+/*public int planClone(int pid, List<Integer> vids, int userid) {
+	int newPid  = 0;
+	planDao dao =new planDao();
+	try {
+		newPid = dao.planClone(pid, vids, userid);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally{
+		dao.Close();
+	}
+	return newPid;
+}
+*/
 }

@@ -3,16 +3,16 @@ package com.example.demo;
 import java.sql.Timestamp;
 
 public class VersionDetail {
-	private int vid;
+	private String vid;
 	private Timestamp createtime;
-	private int userid;
+	private String userid;
 	private String username;
 	private String vtext;
 	private int vcount;
-	public int getVid() {
+	public String getVid() {
 		return vid;
 	}
-	public void setVid(int vid) {
+	public void setVid(String vid) {
 		this.vid = vid;
 	}
 	public Timestamp getCreatetime() {
@@ -33,10 +33,10 @@ public class VersionDetail {
 	public void setVtext(String vtext) {
 		this.vtext = vtext;
 	}
-	public int getUserid() {
+	public String getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 	public int getVcount() {

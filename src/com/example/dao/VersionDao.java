@@ -27,7 +27,7 @@ public class VersionDao extends baseDao {
 		java.sql.PreparedStatement ps =this.conn.prepareStatement(sql);
 		ps.setString(1,version.getPid());
 		ps.setInt(2,version.getFid());
-		ps.setDate(3, version.getCreatetime());
+		ps.setTimestamp(3, version.getCreatetime());
 		ps.setString(4, version.getUserid());
 		ps.setString(5, version.getVtext());
 		ps.setString(6, version.getVparent());
@@ -39,7 +39,7 @@ public class VersionDao extends baseDao {
 		ps2.setString(2, version.getUserid());
 		ps2.setString(3, version.getVtext());
 		ps2.setString(4, version.getVparent());
-		ps2.setDate(5, version.getCreatetime());
+		ps2.setTimestamp(5, version.getCreatetime());
 		ps2.setString(6, vid);
 		ps2.setInt(7,version.getFid());
 		ps2.executeUpdate();
@@ -90,6 +90,23 @@ public class VersionDao extends baseDao {
 			
 		}
 		return version;
+	}
+	public void versionClone(List<String> vids) throws SQLException {
+		
+		
+		String sql="update version set vcount=vcount+1 where vid = ?";
+		String sqll="update filed set Fcount=Fcount+1 where fid = ?";
+		this.ConnetOrcl();
+		java.sql.PreparedStatement ps=this.conn.prepareStatement(sql);
+		java.sql.PreparedStatement pss=this.conn.prepareStatement(sqll);
+		for(int i = 0; i < vids.size(); i++) {
+			ps.setObject(1, vids.get(i));
+			ps.executeUpdate();
+			pss.setObject(1, vids.get(i));
+			pss.executeUpdate();
+			
+		}
+		
 	}
 
 }

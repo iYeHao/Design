@@ -42,7 +42,7 @@ public class fragtotal_Servlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int pid= Integer.parseInt((String)request.getParameter("pid"));
+		String pid= (String)request.getParameter("pid");
 		request.setAttribute("pid", pid);
 		request.getRequestDispatcher("/fragtotal.jsp").forward(request, response);
 		

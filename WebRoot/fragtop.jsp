@@ -4,6 +4,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 String links = (String)request.getAttribute("links");
+request.setAttribute("links", links);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -44,7 +45,7 @@ var setDepth = function(link, depth) {
 }
 for(var i = 0; i < links.length; i++) {
 	linkMap[links[i]["vid"]] = links[i];
-	if(links[i]["vparent"] == 0) {
+	if(links[i]["vparent"] == null) {
 		grandParent = links[i];
 	}
 	links[i].children = [];

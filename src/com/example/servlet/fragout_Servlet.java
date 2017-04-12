@@ -2,6 +2,7 @@ package com.example.servlet;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -121,7 +122,7 @@ public class fragout_Servlet extends HttpServlet {
 		version.setUserid(userid);
 		version.setVcomment(vcomment);
 		version.setVtext(vtext);
-		version.setCreatetime(new Date(new java.util.Date().getTime()));	
+		version.setCreatetime(new Timestamp(new java.util.Date().getTime()));	
 		vimp.add(version);
 		filedImp fimp=new filedImp();
 		ArrayList<Field> flist=new ArrayList<Field>();

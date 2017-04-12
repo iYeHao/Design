@@ -47,7 +47,7 @@ public class fragbottom_Servlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		int vid = Integer.parseInt(request.getParameter("vid"));
+		String vid =request.getParameter("vid");
 		VersionImp vimp = new VersionImp();
 		FieldBaseImp fimp = new FieldBaseImp();
 		VersionLink version=vimp.showVersion(vid);
@@ -71,8 +71,8 @@ public class fragbottom_Servlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int vid = Integer.parseInt(request.getParameter("vid"));
-		int userid=(Integer) request.getSession().getAttribute("userid");
+		String  vid = request.getParameter("vid");
+		String userid=(String) request.getSession().getAttribute("userid");
 		String vcomment = new String(request.getParameter("vcomment").getBytes("8859_1"),"utf-8");
 		String vtext = new String(request.getParameter("vtext").getBytes("8859_1"),"utf-8");
 		VersionImp vimp = new VersionImp();

@@ -44,7 +44,7 @@ public class fragleft_Servlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		int pid= Integer.parseInt((String)request.getParameter("pid"));
+		String pid=( String)request.getParameter("pid");
 		FieldBaseImp fimp = new FieldBaseImp();
 		List<MainField> fields = fimp.getMainFields();
 		request.setAttribute("pid", pid);

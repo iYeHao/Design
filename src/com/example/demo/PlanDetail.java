@@ -4,16 +4,16 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class PlanDetail {
-	private int pid;
+	private String pid;
 	private String pname;
 	private Timestamp pdate;
-	private int userid;
+	private String userid;
 	private String username;
 	private List<PlanFieldDetail> fieldDetails;
-	public int getPid() {
+	public String getPid() {
 		return pid;
 	}
-	public void setPid(int pid) {
+	public void setPid(String pid) {
 		this.pid = pid;
 	}
 	public String getPname() {
@@ -28,10 +28,10 @@ public class PlanDetail {
 	public void setPdate(Timestamp pdate) {
 		this.pdate = pdate;
 	}
-	public int getUserid() {
+	public String getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 	public String getUsername() {

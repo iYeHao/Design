@@ -2284,15 +2284,16 @@ p.est span{
 /*-- //single --*/
 /*--traveller---*/
 .search-box {
-  height: 125px;
-  padding: 20px 110px 0;
-  background: #f2f5ef;
-  -webkit-border-top-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
-  -moz-border-radius-topleft: 5px;
-  -moz-border-radius-topright: 5px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+	height: 125px;
+	padding: 20px 110px 0;
+	background: #f2f5ef;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	font-size: 9px;
 }
 .search-logo {
   float: left;
@@ -2343,7 +2344,7 @@ p.est span{
 .search-form {
   border: 1px solid #e0ffff;
   padding: 8px;
-  background: #aeeeee;
+  background: #6F7D94;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -2411,9 +2412,9 @@ p.est span{
   font-size: 16px;
 }
 .ui-title-cnt em {
-  font-weight: 600;
-  margin-right: 10px;
-  color: #6F7D94;
+	font-weight: 600;
+	margin-right: 10px;
+	color: #6F7D94;
 }
 .ui-title-cnt b {
   color: red;
@@ -2467,10 +2468,10 @@ p.est span{
   padding: 0 2px;
 }
 .travel-log-list p {
-  line-height: 21px;
-  margin-top: 15px;
-  word-break: break-all;
-  word-wrap: break-word;
+	line-height: 21px;
+	margin-top: 15px;
+	word-break: break-all;
+	word-wrap: break-word;
 }
 .travel-log-list p a {
   padding: 0 5px;
@@ -2496,11 +2497,20 @@ p.est span{
   color: #fe6500;
 }
 .gonglue-list{margin-top:0}
-.gonglue-list li{height:150px}
-.gonglue-list li h3{margin:0}
+.gonglue-list li{
+	height: 120px
+}
+.gonglue-list li h3{
+	margin: 0;
+}
 .gonglue-list li.last{border-bottom:none}
 .gonglue-list .gonglue_img{width:145px;margin-top:15px}
-.gonglue-list .gonglue_info{width:660px;margin-top:15px}
+.gonglue-list .gonglue_info{
+	width: 660px;
+	margin-top: 15px;
+	font-weight: normal;
+	font-size: 14px;
+}
 .gonglue-list .gonglue_info p{line-height:24px;margin-top:10px}
 .gonglue-list .favour-count{top:15px}
 .gongluo_top_search{margin-bottom:20px}
@@ -2541,7 +2551,10 @@ p.est span{
   height: auto;
   }
  
-.fn-clear:before,.fn-clear:after{content:"";display:table}.fn-clear:after{clear:both}.fn-clear{zoom:1}body .fn-hide{display:none}.fn-left,.fn-right{display:inline}.fn-left{float:left}.fn-right{float:right}
+.fn-clear:before,.fn-clear:after{content:"";display:table}.fn-clear:after{clear:both}.fn-clear{zoom:1}body .fn-hide{display:none}.fn-left,.fn-right{display:inline}.fn-left{
+	float: left;
+	font-size: 24px;
+}.fn-right{float:right}
 
 /*--//traveller--*/
 
@@ -3846,4 +3859,17 @@ ul.last1 li{
 	width:100%;
 	min-height:700px;
 	position:relative;
+}
+.container .content .banner-bdy.con .container .mainWrap.cf .ui-box.cf table tr td h3 {
+	color: #6F7D94;
+	font-size: 100%;
+}
+.container .content .banner-bdy.con .container .mainWrap.cf .ui-box.cf table tr td .gonglue-list {
+	color: #6F7D94;
+}
+.container .content .banner-bdy.con .container .mainWrap.cf .ui-box.cf table tr td .gonglue-list {
+	color: #6F7D94;
+}
+.container .content .banner-bdy.con .container .mainWrap.cf .ui-box.cf table tr td h3 {
+	font-size: 18px;
 }
