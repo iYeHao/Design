@@ -16,7 +16,7 @@ public class baseDao extends HttpServlet {
 		try {  
             Class.forName("oracle.jdbc.driver.OracleDriver");  
             conn = DriverManager  
-                    .getConnection("jdbc:oracle:thin:@localhost:1521:orcl123", "Hang", "ting");   
+                    .getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "plan", "123456");   
         } catch (SQLException e) {  
             // TODO 自动生成 catch 块  
             e.printStackTrace();  

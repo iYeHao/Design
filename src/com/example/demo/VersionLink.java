@@ -1,16 +1,16 @@
 package com.example.demo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class VersionLink {
-	private String vid;
+	private int vid;
 	private int fid;
-	private String pid;
-	private Date createtime;
-	private String userid;
+	private int pid;
+	private Timestamp createtime;
+	private int userid;
 	private String username;
 	private String vcomment;
-	private String vparent;
+	private int vparent;
 	private String vtext;
 	
 	public String getUsername() {
@@ -25,10 +25,10 @@ public class VersionLink {
 	public void setVcomment(String vcomment) {
 		this.vcomment = vcomment;
 	}
-	public String getVid() {
+	public int getVid() {
 		return vid;
 	}
-	public void setVid(String vid) {
+	public void setVid(int vid) {
 		this.vid = vid;
 	}
 	public int getFid() {
@@ -37,28 +37,28 @@ public class VersionLink {
 	public void setFid(int fid) {
 		this.fid = fid;
 	}
-	public String getPid() {
+	public int getPid() {
 		return pid;
 	}
-	public void setPid(String pid) {
+	public void setPid(int pid) {
 		this.pid = pid;
 	}
-	public Date getCreatetime() {
+	public Timestamp getCreatetime() {
 		return createtime;
 	}
-	public void setCreatetime(Date createtime) {
+	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
 	}
-	public String getUserid() {
+	public int getUserid() {
 		return userid;
 	}
-	public void setUserid(String userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
-	public String getVparent() {
+	public int getVparent() {
 		return vparent;
 	}
-	public void setVparent(String vparent) {
+	public void setVparent(int vparent) {
 		this.vparent = vparent;
 	}
 	public String getVtext() {

@@ -3,8 +3,8 @@ package com.example.demo;
 import java.sql.Date;
 
 public class Plan {
-private String pid;
-private String userid;
+private int pid;
+private int userid;
 private String ptype;
 private String pname;
 private Date pdate;
@@ -15,16 +15,16 @@ public void setUsername(String uname){
 public String getUsername(){
 	return username;
 }
-public void setPid(String pid){
+public void setPid(int pid){
 	this.pid=pid;
 }
-public String getPid(){
+public int getPid(){
 	return pid;
 }
-public void setUserid(String userid){
+public void setUserid(int userid){
 	this.userid=userid;
 }
-public String getUserid(){
+public int getUserid(){
 	return userid;
 }
 public void setPtype(String ptype){

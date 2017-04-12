@@ -1,6 +1,7 @@
 package com.example.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,11 +19,6 @@ import com.example.demo.Plan;
 import com.example.demo.VersionLink;
 
 public class version_Servlet extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Constructor of the object.
@@ -52,7 +48,7 @@ public class version_Servlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String pid = request.getParameter("pid");
+		int pid = Integer.parseInt(request.getParameter("pid"));
 		int fid = Integer.parseInt(request.getParameter("fid"));
 		VersionImp vimp = new VersionImp();
 		planImp pimp = new planImp();

@@ -27,7 +27,7 @@ public class VersionImp {
 		return ok;
 	}
 	
-	public List<VersionLink> getLinks(String pid, int fid) {
+	public List<VersionLink> getLinks(int pid, int fid) {
 		List<VersionLink> result = null;
 		VersionDao dao = new VersionDao();
 		try {
@@ -39,7 +39,7 @@ public class VersionImp {
 		return result;
 	}
 	
-	public VersionLink showVersion(String vid){
+	public VersionLink showVersion(int vid){
 		VersionLink version = null;
 		VersionDao dao =new VersionDao();
 		try {
@@ -52,5 +52,23 @@ public class VersionImp {
 		}
 		return version;
 	}
+	
+	public int versionClone(List<Integer> vids) {
+		int vcount = 0;
+		VersionDao dao =new VersionDao();
+		try {
+			vcount = dao.versionClone(vids);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dao.Close();
+		}
+		return vcount;
+	}
 
+	public int versionClone1(int parseInt) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
