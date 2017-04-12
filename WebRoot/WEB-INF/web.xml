@@ -56,12 +56,6 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>acount5_Servlet</servlet-name>
-    <servlet-class>com.example.servlet.acount5_Servlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>planindex_Servlet</servlet-name>
     <servlet-class>com.example.servlet.planindex_Servlet</servlet-class>
   </servlet>
@@ -155,6 +149,12 @@
     <servlet-name>fragindex_Servlet</servlet-name>
     <servlet-class>com.example.servlet.fragindex_Servlet</servlet-class>
   </servlet>
+   <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>fragtotal_Servlet</servlet-name>
+    <servlet-class>com.example.servlet.fragtotal_Servlet</servlet-class>
+  </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -167,18 +167,61 @@
     <servlet-name>version_Servlet</servlet-name>
     <servlet-class>com.example.servlet.version_Servlet</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>timelineServlet</servlet-name>
-    <servlet-class>com.example.servlet.timelineServlet</servlet-class>
+    <servlet-name>fraghead_Servlet</servlet-name>
+    <servlet-class>com.example.servlet.fraghead_Servlet</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>pageCurrent_Servlet</servlet-name>
-    <servlet-class>com.example.servlet.pageCurrent_Servlet</servlet-class>
+    <servlet-name>fragleft_Servlet</servlet-name>
+    <servlet-class>com.example.servlet.fragleft_Servlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>fragtop_Servlet</servlet-name>
+    <servlet-class>com.example.servlet.fragtop_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>fragbottom_Servlet</servlet-name>
+    <servlet-class>com.example.servlet.fragbottom_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>fragtest_Servlet</servlet-name>
+    <servlet-class>com.example.servlet.fragtest_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>plantotal_Servlet</servlet-name>
+    <servlet-class>com.example.servlet.plantotal_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>planbest_Servlet</servlet-name>
+    <servlet-class>com.example.servlet.planbest_Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>planclone_Servlet</servlet-name>
+    <servlet-class>com.example.servlet.planclone_Servlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
 
 
 
@@ -214,10 +257,6 @@
   <servlet-mapping>
     <servlet-name>account4_Servlet</servlet-name>
     <url-pattern>/account4_Servlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>acount5_Servlet</servlet-name>
-    <url-pattern>/acount5_Servlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>planindex_Servlet</servlet-name>
@@ -283,6 +322,10 @@
     <servlet-name>fragindex_Servlet</servlet-name>
     <url-pattern>/fragindex_Servlet</url-pattern>
   </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>fragtotal_Servlet</servlet-name>
+    <url-pattern>/fragtotal_Servlet</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>fragout_Servlet</servlet-name>
     <url-pattern>/fragout_Servlet</url-pattern>
@@ -291,13 +334,37 @@
     <servlet-name>version_Servlet</servlet-name>
     <url-pattern>/version_Servlet</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
-    <servlet-name>timelineServlet</servlet-name>
-    <url-pattern>/timelineServlet</url-pattern>
+  <servlet-mapping>
+    <servlet-name>fraghead_Servlet</servlet-name>
+    <url-pattern>/fraghead_Servlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>pageCurrent_Servlet</servlet-name>
-    <url-pattern>/pageCurrent_Servlet</url-pattern>
+    <servlet-name>fragleft_Servlet</servlet-name>
+    <url-pattern>/fragleft_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>fragtop_Servlet</servlet-name>
+    <url-pattern>/fragtop_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>fragbottom_Servlet</servlet-name>
+    <url-pattern>/fragbottom_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>fragtest_Servlet</servlet-name>
+    <url-pattern>/fragtest_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>plantotal_Servlet</servlet-name>
+    <url-pattern>/plantotal_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>planbest_Servlet</servlet-name>
+    <url-pattern>/planbest_Servlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>planclone_Servlet</servlet-name>
+    <url-pattern>/planclone_Servlet</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

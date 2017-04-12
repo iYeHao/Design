@@ -43,7 +43,7 @@ public class Register {
             }
         }
 
-        if (this.upassword == null || this.upassword.trim().equals(" ")) {
+        if (this.upassword == null || this.upassword.trim().equals("")) {
             isOk = false;
             errors.put("upassword", "*ÃÜÂë²»Îª¿Õ");
         } else {

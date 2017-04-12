@@ -2,33 +2,22 @@ package com.example.servlet;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.ArrayList;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
-import com.common.code.Segmentation;
-import com.common.code.TextAnalyse;
 import com.example.daoimp.FieldBaseImp;
 import com.example.daoimp.VersionImp;
-import com.example.daoimp.filedImp;
 import com.example.daoimp.planImp;
-import com.example.daoimp.userImp;
-import com.example.demo.Field;
 import com.example.demo.Plan;
 import com.example.demo.Version;
 import com.example.demo.VersionLink;
 
 public class fragout_Servlet extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Constructor of the object.
@@ -58,7 +47,7 @@ public class fragout_Servlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String vid = request.getParameter("vid");
+		int vid = Integer.parseInt(request.getParameter("vid"));
 		VersionImp vimp = new VersionImp();
 		planImp pimp = new planImp();
 		FieldBaseImp fimp = new FieldBaseImp();
@@ -73,28 +62,6 @@ public class fragout_Servlet extends HttpServlet {
 		request.getRequestDispatcher("/fragout.jsp").forward(request, response);
 	}
 
-	public void Evaluate(ArrayList<Field> flist) throws Exception{ 
-		ArrayList<Field> list=flist;
-		int size=list.size();
-		double sim1[] ={0},sim2[] ={0};
-		for(int i=0;i<size;i++){
-			sim1[i]=TextAnalyse.getSimilarity(list.get(i).getFtext(),list.get(0).getFtext());
-			
-		}
-		Segmentation seg=new Segmentation();
-		
-		for(int i=0;i<size;i++){
-			sim2[i]=TextAnalyse.getSimilarity2(seg.seg_list(list.get(i).getFtext().replaceAll("[\\pP¡®¡¯¡°¡±]", "")),
-					seg.seg_list(list.get(0).getFtext().replaceAll("[\\pP¡®¡¯¡°¡±]", "")));
-		}
-		double newlevel=0;
-		userImp uimp=new userImp();
-		for(int i=0;i<size;i++){
-			newlevel=sim1[i]*0.5+sim2[i]*0.5;
-			uimp.reviselevel(newlevel,list.get(i).getUserid() );
-		}
-	}
-	
 	/**
 	 * The doPost method of the servlet. <br>
 	 *
@@ -107,9 +74,8 @@ public class fragout_Servlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String vid = request.getParameter("vid");
-		HttpSession se=request.getSession();
-		String userid=(String) se.getAttribute("userid");
+		int vid = Integer.parseInt(request.getParameter("vid"));
+		int userid=(Integer) request.getSession().getAttribute("userid");
 		String vcomment = new String(request.getParameter("vcomment").getBytes("8859_1"),"utf-8");
 		String vtext = new String(request.getParameter("vtext").getBytes("8859_1"),"utf-8");
 		VersionImp vimp = new VersionImp();
@@ -121,19 +87,11 @@ public class fragout_Servlet extends HttpServlet {
 		version.setUserid(userid);
 		version.setVcomment(vcomment);
 		version.setVtext(vtext);
-		version.setCreatetime(new Date(new java.util.Date().getTime()));	
+		version.setCreatetime(new Timestamp(new java.util.Date().getTime()));	
 		vimp.add(version);
-		filedImp fimp=new filedImp();
-		ArrayList<Field> flist=new ArrayList<Field>();
-		flist=fimp.trackback(vid);
-		try {
-			Evaluate(flist);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		response.sendRedirect("version_Servlet?pid=" + versionLink.getPid() + "&fid=" + versionLink.getFid());
 	}
+
 	/**
 	 * Initialization of the servlet. <br>
 	 *

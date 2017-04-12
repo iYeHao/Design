@@ -2,26 +2,28 @@ package com.example.daoimp;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.sql.Date;
 
 import com.example.dao.planDao;
 import com.example.demo.Plan;
+import com.example.demo.PlanDetail;
 
 public class planImp {
-	public ArrayList<Plan> show(String searchStr){
-		ArrayList<Plan> plist =new ArrayList<Plan>();
-		planDao dao =new planDao();
-		try {
-			plist=dao.show(searchStr);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			dao.Close();
-		}
-		return plist;
+public ArrayList<Plan> show(String searchStr){
+	ArrayList<Plan> plist =new ArrayList<Plan>();
+	planDao dao =new planDao();
+	try {
+		plist=dao.show(searchStr);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally{
+		dao.Close();
 	}
-public ArrayList<Plan> ShowDetail(String userid){
+	return plist;
+}
+public ArrayList<Plan> ShowDetail(int userid){
 	ArrayList<Plan> planlist =new ArrayList<Plan>();
 	planDao dao =new planDao();
 	try {
@@ -34,20 +36,7 @@ public ArrayList<Plan> ShowDetail(String userid){
 	}
 	return planlist;
 }
-public Plan PlanCheck(String pid){
-	Plan plan =new Plan();
-	planDao dao = new planDao();
-	try {
-		plan=dao.PlanCheck(pid);
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}finally{
-		dao.Close();
-	}
-	return plan;
-}
-public Plan showPlan(String pid){
+public Plan showPlan(int pid){
 	Plan plan = null;
 	planDao dao =new planDao();
 	try {
@@ -60,9 +49,22 @@ public Plan showPlan(String pid){
 	}
 	return plan;
 }
-public String addplan(String pname, String ptype, Date d, String userid) {
+public Plan PlanCheck(int pid){
+	Plan plan =new Plan();
+	planDao dao = new planDao();
+	try {
+		plan=dao.PlanCheck(pid);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally{
+		dao.Close();
+	}
+	return plan;
+}
+public int addplan(String pname, String ptype, Date d, int userid) {
 	// TODO Auto-generated method stub
-	String pid=null;
+	int pid=0;
 	planDao dao =new planDao();
 	try {
 		pid=dao.addplan(pname,ptype,d,userid);
@@ -74,4 +76,46 @@ public String addplan(String pname, String ptype, Date d, String userid) {
 	}
 	return pid;
 }
+
+	public PlanDetail getPlanDetail(int pid) {
+		PlanDetail detail = null;
+		planDao dao =new planDao();
+		try {
+			detail = dao.getPlanDetail(pid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dao.Close();
+		}
+		return detail;
+	}
+	
+	public PlanDetail getBestPlanDetail(int pid) {
+		PlanDetail detail = null;
+		planDao dao =new planDao();
+		try {
+			detail = dao.getBestPlanDetail(pid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dao.Close();
+		}
+		return detail;
+	}
+	/*public int planClone(int pid, List<Integer> vids, int userid) {
+		int newPid  = 0;
+		planDao dao =new planDao();
+		try {
+			newPid = dao.planClone(pid, vids, userid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dao.Close();
+		}
+		return newPid;
+	}
+	*/
 }

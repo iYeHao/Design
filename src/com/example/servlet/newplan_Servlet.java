@@ -48,8 +48,9 @@ public class newplan_Servlet extends HttpServlet {
 			throws ServletException, IOException {
 		String ftext=new String(request.getParameter("md").getBytes("8859_1"),"utf-8");
 		String fname="编制目的";
-		String userid=(String) request.getSession().getAttribute("userid");
-		String pid=(String) request.getSession().getAttribute("pid");
+		int userid=(Integer) request.getSession().getAttribute("userid");
+		Object ppid=request.getSession().getAttribute("pid");
+		int pid=(Integer)ppid;
 		java.util.Date d =(java.util.Date) request.getSession().getAttribute("date");
 		Date date=new Date(d.getTime());
 		filedImp imp=new filedImp();
@@ -62,7 +63,7 @@ public class newplan_Servlet extends HttpServlet {
 		f=imp.addfiled(ftext1, fname1, userid, pid, date);
 		flist.add(f);
 		String ftext2=new String(request.getParameter("fw").getBytes("8859_1"),"utf-8");
-		String fname2="试用范围";
+		String fname2="适用范围";
 		f=imp.addfiled(ftext2, fname2, userid, pid, date);
 		flist.add(f);
 		response.setHeader("Content-type", "text/html;charset=UTF-8");

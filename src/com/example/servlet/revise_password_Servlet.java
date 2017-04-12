@@ -45,7 +45,7 @@ public class revise_password_Servlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter  out=response.getWriter();
-		String userid=(String) request.getSession().getAttribute("userid");
+		int userid=(Integer) request.getSession().getAttribute("userid");
 		String newpassword=request.getParameter("newpassword");
 		String cpassword =request.getParameter("cpassword");
 		if(!cpassword.equals(newpassword)){

@@ -43,7 +43,7 @@ public class account1_Servlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			String userid=(String) request.getSession().getAttribute("userid");
+			int userid= (Integer) request.getSession().getAttribute("userid");
 			userImp imp = new userImp();
 			User user =new User();
 			user = imp.DetailShow(userid);

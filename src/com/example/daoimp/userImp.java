@@ -7,18 +7,6 @@ import com.example.dao.UserDao;
 import com.example.demo.User;
 
 public class userImp {
-	public void reviselevel(double level,String userid ){
-		UserDao dao=new UserDao();
-		try {
-			dao.reviselevel(level,userid);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			dao.Close(); 
-		}
-			
-	}
 	
 	public ArrayList<User> Show(){
 		ArrayList<User>  ulist =new ArrayList<User> ();
@@ -34,7 +22,7 @@ public class userImp {
 		return ulist;
 		
 	}
-	public User DetailShow(String userid){
+	public User DetailShow(int userid){
 		User user =new User();
 		UserDao dao =new UserDao();
 		try {
@@ -47,7 +35,7 @@ public class userImp {
 		}
 		return user;
 	}
-	public void Delete(String userid){
+	public void Delete(int userid){
 		UserDao dao = new UserDao();
 		try {
 			dao.Delete(userid);
@@ -104,7 +92,7 @@ public class userImp {
 		return b;
 		
 	}
-	public User revise(String userid ,String uname, String usex, String urealname, int uage,
+	public User revise(int userid ,String uname, String usex, String urealname, int uage,
 			String uposition, String uemail) {
 		// TODO Auto-generated method stub
 		User user =new User();
@@ -119,7 +107,7 @@ public class userImp {
 		}
 		return user;
 	}
-	public void revisepassword(String newpassword,String userid) {
+	public void revisepassword(String newpassword,int userid) {
 		// TODO Auto-generated method stub
 		UserDao dao=new UserDao();
 		try {
